@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Nop.Core.Domain.Shipping;
 using Nop.Data;
+using Nop.Data.DataBase;
 
 namespace Nop.Services.Shipping.Date
 {
@@ -13,15 +14,15 @@ namespace Nop.Services.Shipping.Date
     {
         #region Fields
 
-        private readonly IRepository<DeliveryDate> _deliveryDateRepository;
-        private readonly IRepository<ProductAvailabilityRange> _productAvailabilityRangeRepository;
+        private readonly IRepository<DeliveryDate, MerchantDB> _deliveryDateRepository;
+        private readonly IRepository<ProductAvailabilityRange, MerchantDB> _productAvailabilityRangeRepository;
 
         #endregion
 
         #region Ctor
 
-        public DateRangeService(IRepository<DeliveryDate> deliveryDateRepository,
-            IRepository<ProductAvailabilityRange> productAvailabilityRangeRepository)
+        public DateRangeService(IRepository<DeliveryDate, MerchantDB> deliveryDateRepository,
+            IRepository<ProductAvailabilityRange, MerchantDB> productAvailabilityRangeRepository)
         {
             _deliveryDateRepository = deliveryDateRepository;
             _productAvailabilityRangeRepository = productAvailabilityRangeRepository;

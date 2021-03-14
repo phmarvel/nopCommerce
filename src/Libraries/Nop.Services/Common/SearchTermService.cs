@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Nop.Core;
 using Nop.Core.Domain.Common;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Data.Extensions;
 
 namespace Nop.Services.Common
@@ -14,13 +15,13 @@ namespace Nop.Services.Common
     {
         #region Fields
 
-        private readonly IRepository<SearchTerm> _searchTermRepository;
+        private readonly IRepository<SearchTerm, MerchantDB> _searchTermRepository;
 
         #endregion
 
         #region Ctor
 
-        public SearchTermService(IRepository<SearchTerm> searchTermRepository)
+        public SearchTermService(IRepository<SearchTerm, MerchantDB> searchTermRepository)
         {
             _searchTermRepository = searchTermRepository;
         }

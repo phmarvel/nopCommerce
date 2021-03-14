@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Common;
 using Nop.Data;
+using Nop.Data.DataBase;
 
 namespace Nop.Services.Common
 {
@@ -14,16 +15,16 @@ namespace Nop.Services.Common
     {
         #region Fields
 
-        private readonly IRepository<AddressAttribute> _addressAttributeRepository;
-        private readonly IRepository<AddressAttributeValue> _addressAttributeValueRepository;
+        private readonly IRepository<AddressAttribute, MerchantDB> _addressAttributeRepository;
+        private readonly IRepository<AddressAttributeValue, MerchantDB> _addressAttributeValueRepository;
         private readonly IStaticCacheManager _staticCacheManager;
 
         #endregion
 
         #region Ctor
 
-        public AddressAttributeService(IRepository<AddressAttribute> addressAttributeRepository,
-            IRepository<AddressAttributeValue> addressAttributeValueRepository,
+        public AddressAttributeService(IRepository<AddressAttribute, MerchantDB> addressAttributeRepository,
+            IRepository<AddressAttributeValue, MerchantDB> addressAttributeValueRepository,
             IStaticCacheManager staticCacheManager)
         {
             _addressAttributeRepository = addressAttributeRepository;

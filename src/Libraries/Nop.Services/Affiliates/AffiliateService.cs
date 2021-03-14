@@ -7,6 +7,7 @@ using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Seo;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Common;
 using Nop.Services.Seo;
 
@@ -20,9 +21,9 @@ namespace Nop.Services.Affiliates
         #region Fields
 
         private readonly IAddressService _addressService;
-        private readonly IRepository<Address> _addressRepository;
-        private readonly IRepository<Affiliate> _affiliateRepository;
-        private readonly IRepository<Order> _orderRepository;
+        private readonly IRepository<Address, MerchantDB> _addressRepository;
+        private readonly IRepository<Affiliate, MerchantDB> _affiliateRepository;
+        private readonly IRepository<Order, MerchantDB> _orderRepository;
         private readonly IUrlRecordService _urlRecordService;
         private readonly IWebHelper _webHelper;
         private readonly SeoSettings _seoSettings;
@@ -32,9 +33,9 @@ namespace Nop.Services.Affiliates
         #region Ctor
 
         public AffiliateService(IAddressService addressService,
-            IRepository<Address> addressRepository,
-            IRepository<Affiliate> affiliateRepository,
-            IRepository<Order> orderRepository,
+            IRepository<Address, MerchantDB> addressRepository,
+            IRepository<Affiliate, MerchantDB> affiliateRepository,
+            IRepository<Order, MerchantDB> orderRepository,
             IUrlRecordService urlRecordService,
             IWebHelper webHelper,
             SeoSettings seoSettings)

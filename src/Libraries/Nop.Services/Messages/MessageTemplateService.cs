@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Messages;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Localization;
 using Nop.Services.Stores;
 
@@ -21,7 +22,7 @@ namespace Nop.Services.Messages
         private readonly ILanguageService _languageService;
         private readonly ILocalizationService _localizationService;
         private readonly ILocalizedEntityService _localizedEntityService;
-        private readonly IRepository<MessageTemplate> _messageTemplateRepository;
+        private readonly IRepository<MessageTemplate, MerchantDB> _messageTemplateRepository;
         private readonly IStoreMappingService _storeMappingService;
 
         #endregion
@@ -33,7 +34,7 @@ namespace Nop.Services.Messages
             ILanguageService languageService,
             ILocalizationService localizationService,
             ILocalizedEntityService localizedEntityService,
-            IRepository<MessageTemplate> messageTemplateRepository,
+            IRepository<MessageTemplate, MerchantDB> messageTemplateRepository,
             IStoreMappingService storeMappingService)
         {
             _staticCacheManager = staticCacheManager;

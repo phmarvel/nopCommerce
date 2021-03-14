@@ -10,6 +10,7 @@ using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Common;
 using Nop.Core.Events;
+using Nop.Data.DataBase;
 
 namespace Nop.Data
 {
@@ -17,12 +18,12 @@ namespace Nop.Data
     /// Represents the entity repository implementation
     /// </summary>
     /// <typeparam name="TEntity">Entity type</typeparam>
-    public partial class EntityRepository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
+    public partial class EntityRepository<TEntity, DBType> : IRepository<TEntity, DBType> where TEntity : BaseEntity where DBType : IDBType
     {
         #region Fields
 
         private readonly IEventPublisher _eventPublisher;
-        private readonly INopDataProvider _dataProvider;
+        private readonly INopDataProvider<DBType> _dataProvider;
         private readonly IStaticCacheManager _staticCacheManager;
 
         #endregion
@@ -30,7 +31,7 @@ namespace Nop.Data
         #region Ctor
 
         public EntityRepository(IEventPublisher eventPublisher,
-            INopDataProvider dataProvider,
+            INopDataProvider<DBType> dataProvider,
             IStaticCacheManager staticCacheManager)
         {
             _eventPublisher = eventPublisher;

@@ -5,6 +5,7 @@ using Nop.Core;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Customers;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Common;
 using Nop.Services.Messages;
 
@@ -18,9 +19,9 @@ namespace Nop.Services.Catalog
         #region Fields
 
         private readonly IGenericAttributeService _genericAttributeService;
-        private readonly IRepository<BackInStockSubscription> _backInStockSubscriptionRepository;
-        private readonly IRepository<Customer> _customerRepository;
-        private readonly IRepository<Product> _productRepository;
+        private readonly IRepository<BackInStockSubscription, MerchantDB> _backInStockSubscriptionRepository;
+        private readonly IRepository<Customer, MerchantDB> _customerRepository;
+        private readonly IRepository<Product, MerchantDB> _productRepository;
         private readonly IWorkflowMessageService _workflowMessageService;
 
         #endregion
@@ -28,9 +29,9 @@ namespace Nop.Services.Catalog
         #region Ctor
 
         public BackInStockSubscriptionService(IGenericAttributeService genericAttributeService,
-            IRepository<BackInStockSubscription> backInStockSubscriptionRepository,
-            IRepository<Customer> customerRepository,
-            IRepository<Product> productRepository,
+            IRepository<BackInStockSubscription, MerchantDB> backInStockSubscriptionRepository,
+            IRepository<Customer, MerchantDB> customerRepository,
+            IRepository<Product, MerchantDB> productRepository,
             IWorkflowMessageService workflowMessageService)
         {
             _genericAttributeService = genericAttributeService;

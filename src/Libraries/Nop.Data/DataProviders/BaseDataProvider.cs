@@ -13,13 +13,14 @@ using LinqToDB.Tools;
 using Nop.Core;
 using Nop.Core.Configuration;
 using Nop.Core.Infrastructure;
+using Nop.Data.DataBase;
 using Nop.Data.Mapping;
 using StackExchange.Profiling;
 using StackExchange.Profiling.Data;
 
 namespace Nop.Data.DataProviders
 {
-    public abstract class BaseDataProvider
+    public abstract class BaseDataProvider<DBType> where DBType : IDBType
     {
         #region Utils
 

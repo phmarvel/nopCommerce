@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Nop.Core.Domain.Catalog;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Catalog;
 using Nop.Services.Seo;
 using Nop.Web.Factories;
@@ -30,7 +31,7 @@ namespace Nop.Tests.Nop.Web.Tests.Public.Factories
         [Test]
         public async Task CanPrepareProductTemplateViewPath()
         {
-            var productTemplateRepository = GetService<IRepository<ProductTemplate>>();
+            var productTemplateRepository = GetService<IRepository<ProductTemplate, MerchantDB>>();
             var productTemplateSimple = productTemplateRepository.Table.FirstOrDefault(pt => pt.Name == "Simple product");
             if (productTemplateSimple == null)
                 throw new Exception("Simple product template could not be loaded");

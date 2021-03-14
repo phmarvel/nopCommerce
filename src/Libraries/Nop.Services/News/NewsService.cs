@@ -6,6 +6,7 @@ using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Core.Domain.News;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Stores;
 
 namespace Nop.Services.News
@@ -17,8 +18,8 @@ namespace Nop.Services.News
     {
         #region Fields
 
-        private readonly IRepository<NewsComment> _newsCommentRepository;
-        private readonly IRepository<NewsItem> _newsItemRepository;
+        private readonly IRepository<NewsComment, MerchantDB> _newsCommentRepository;
+        private readonly IRepository<NewsItem, MerchantDB> _newsItemRepository;
         private readonly IStaticCacheManager _staticCacheManager;
         private readonly IStoreMappingService _storeMappingService;
 
@@ -27,8 +28,8 @@ namespace Nop.Services.News
         #region Ctor
 
         public NewsService(
-            IRepository<NewsComment> newsCommentRepository,
-            IRepository<NewsItem> newsItemRepository,
+            IRepository<NewsComment, MerchantDB> newsCommentRepository,
+            IRepository<NewsItem, MerchantDB> newsItemRepository,
             IStaticCacheManager staticCacheManager,
             IStoreMappingService storeMappingService)
         {

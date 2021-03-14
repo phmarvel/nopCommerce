@@ -5,6 +5,7 @@ using Nop.Core;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Orders;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Helpers;
 using Nop.Services.Localization;
 
@@ -19,7 +20,7 @@ namespace Nop.Services.Orders
 
         private readonly IDateTimeHelper _dateTimeHelper;
         private readonly ILocalizationService _localizationService;
-        private readonly IRepository<RewardPointsHistory> _rewardPointsHistoryRepository;
+        private readonly IRepository<RewardPointsHistory, MerchantDB> _rewardPointsHistoryRepository;
         private readonly RewardPointsSettings _rewardPointsSettings;
 
         #endregion
@@ -28,7 +29,7 @@ namespace Nop.Services.Orders
 
         public RewardPointService(IDateTimeHelper dateTimeHelper,
             ILocalizationService localizationService,
-            IRepository<RewardPointsHistory> rewardPointsHistoryRepository,
+            IRepository<RewardPointsHistory, MerchantDB> rewardPointsHistoryRepository,
             RewardPointsSettings rewardPointsSettings)
         {
             _dateTimeHelper = dateTimeHelper;

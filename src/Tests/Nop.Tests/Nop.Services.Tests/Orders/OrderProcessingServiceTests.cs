@@ -6,6 +6,7 @@ using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Domain.Shipping;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Orders;
 using Nop.Tests.Nop.Services.Tests.Payments;
 using NUnit.Framework;
@@ -33,7 +34,7 @@ namespace Nop.Tests.Nop.Services.Tests.Orders
             TestPaymentMethod.TestSupportPartiallyRefund = false;
             TestPaymentMethod.TestSupportVoid = false;
             
-            await GetService<IRepository<RecurringPayment>>().TruncateAsync();
+            await GetService<IRepository<RecurringPayment, MerchantDB>>().TruncateAsync();
         }
 
         [Test]

@@ -13,6 +13,7 @@ using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Tax;
 using Nop.Core.Domain.Vendors;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services;
 using Nop.Services.Catalog;
 using Nop.Services.Common;
@@ -45,7 +46,7 @@ namespace Nop.Tests.Nop.Services.Tests.ExportImport
         private IMeasureService _measureService;
         private IOrderService _orderService;
         private IProductTemplateService _productTemplateService;
-        private IRepository<Product> _productRepository;
+        private IRepository<Product, MerchantDB> _productRepository;
         private ITaxCategoryService _taxCategoryService;
         private IVendorService _vendorService;
 
@@ -67,7 +68,7 @@ namespace Nop.Tests.Nop.Services.Tests.ExportImport
             _measureService = GetService<IMeasureService>();
             _orderService = GetService<IOrderService>();
             _productTemplateService = GetService<IProductTemplateService>();
-            _productRepository = GetService<IRepository<Product>>();
+            _productRepository = GetService<IRepository<Product, MerchantDB>>();
             _taxCategoryService = GetService<ITaxCategoryService>();
             _vendorService = GetService<IVendorService>();
 

@@ -1,5 +1,6 @@
 ﻿using Nop.Core;
 using Nop.Core.Infrastructure;
+using Nop.Data.DataBase;
 using Nop.Data.DataProviders;
 
 namespace Nop.Data
@@ -7,8 +8,9 @@ namespace Nop.Data
     /// <summary>
     /// Represents the data provider manager
     /// </summary>
-    public partial class DataProviderManager : IDataProviderManager
+    public partial class DataProviderManager<DBType> :IDataProviderManager<DBType> where DBType: IDBType
     {
+    
         #region Methods
 
         /// <summary>
@@ -16,13 +18,13 @@ namespace Nop.Data
         /// </summary>
         /// <param name="dataProviderType">Data provider type</param>
         /// <returns></returns>
-        public static INopDataProvider GetDataProvider(DataProviderType dataProviderType)
+        public static INopDataProvider<DBType> GetDataProvider(DataProviderType dataProviderType)
         {
             return dataProviderType switch
             {
-                DataProviderType.SqlServer => new MsSqlNopDataProvider(),
-                DataProviderType.MySql => new MySqlNopDataProvider(),
-                DataProviderType.PostgreSQL => new PostgreSqlDataProvider(),
+                DataProviderType.SqlServer => new MsSqlNopDataProvider<DBType>(),
+                DataProviderType.MySql => new MySqlNopDataProvider<DBType>(),
+                DataProviderType.PostgreSQL => new PostgreSqlDataProvider<DBType>(),
                 _ => throw new NopException($"Not supported data provider name: '{dataProviderType}'"),
             };
         }
@@ -34,7 +36,7 @@ namespace Nop.Data
         /// <summary>
         /// Gets data provider
         /// </summary>
-        public INopDataProvider DataProvider
+        public INopDataProvider<DBType> DataProvider
         {
             get
             {
@@ -43,7 +45,6 @@ namespace Nop.Data
                 return GetDataProvider(dataProviderType);
             }
         }
-
         #endregion
     }
 }

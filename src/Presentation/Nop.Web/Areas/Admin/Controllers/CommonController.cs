@@ -7,6 +7,7 @@ using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Core.Infrastructure;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Common;
 using Nop.Services.Customers;
 using Nop.Services.Helpers;
@@ -34,7 +35,7 @@ namespace Nop.Web.Areas.Admin.Controllers
 
         private readonly ICommonModelFactory _commonModelFactory;
         private readonly ICustomerService _customerService;
-        private readonly INopDataProvider _dataProvider;
+        private readonly INopDataProvider<MerchantDB> _dataProvider;
         private readonly IDateTimeHelper _dateTimeHelper;
         private readonly ILanguageService _languageService;
         private readonly ILocalizationService _localizationService;
@@ -55,7 +56,7 @@ namespace Nop.Web.Areas.Admin.Controllers
 
         public CommonController(ICommonModelFactory commonModelFactory,
             ICustomerService customerService,
-            INopDataProvider dataProvider,
+            INopDataProvider<MerchantDB> dataProvider,
             IDateTimeHelper dateTimeHelper,
             ILanguageService languageService,
             ILocalizationService localizationService,

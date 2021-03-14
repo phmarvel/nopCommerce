@@ -13,6 +13,7 @@ using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Orders;
 using Nop.Core.Http.Extensions;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Plugin.Widgets.FacebookPixel.Domain;
 using Nop.Services.Catalog;
 using Nop.Services.Cms;
@@ -53,7 +54,7 @@ namespace Nop.Plugin.Widgets.FacebookPixel.Services
         private readonly IOrderTotalCalculationService _orderTotalCalculationService;
         private readonly IPriceCalculationService _priceCalculationService;
         private readonly IProductService _productService;
-        private readonly IRepository<FacebookPixelConfiguration> _facebookPixelConfigurationRepository;
+        private readonly IRepository<FacebookPixelConfiguration, MerchantDB> _facebookPixelConfigurationRepository;
         private readonly IShoppingCartService _shoppingCartService;
         private readonly IStateProvinceService _stateProvinceService;
         private readonly IStaticCacheManager _staticCacheManager;
@@ -77,7 +78,7 @@ namespace Nop.Plugin.Widgets.FacebookPixel.Services
             IOrderTotalCalculationService orderTotalCalculationService,
             IPriceCalculationService priceCalculationService,
             IProductService productService,
-            IRepository<FacebookPixelConfiguration> facebookPixelConfigurationRepository,
+            IRepository<FacebookPixelConfiguration, MerchantDB> facebookPixelConfigurationRepository,
             IShoppingCartService shoppingCartService,
             IStateProvinceService stateProvinceService,
             IStaticCacheManager staticCacheManager,

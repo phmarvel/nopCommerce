@@ -18,6 +18,7 @@ using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Tax;
 using Nop.Core.Infrastructure;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Common;
 using Nop.Services.Localization;
 
@@ -32,23 +33,23 @@ namespace Nop.Services.Customers
 
         private readonly CustomerSettings _customerSettings;
         private readonly IGenericAttributeService _genericAttributeService;
-        private readonly INopDataProvider _dataProvider;
-        private readonly IRepository<Address> _customerAddressRepository;
-        private readonly IRepository<BlogComment> _blogCommentRepository;
-        private readonly IRepository<Customer> _customerRepository;
-        private readonly IRepository<CustomerAddressMapping> _customerAddressMappingRepository;
-        private readonly IRepository<CustomerCustomerRoleMapping> _customerCustomerRoleMappingRepository;
-        private readonly IRepository<CustomerPassword> _customerPasswordRepository;
-        private readonly IRepository<CustomerRole> _customerRoleRepository;
-        private readonly IRepository<ForumPost> _forumPostRepository;
-        private readonly IRepository<ForumTopic> _forumTopicRepository;
-        private readonly IRepository<GenericAttribute> _gaRepository;
-        private readonly IRepository<NewsComment> _newsCommentRepository;
-        private readonly IRepository<Order> _orderRepository;
-        private readonly IRepository<ProductReview> _productReviewRepository;
-        private readonly IRepository<ProductReviewHelpfulness> _productReviewHelpfulnessRepository;
-        private readonly IRepository<PollVotingRecord> _pollVotingRecordRepository;
-        private readonly IRepository<ShoppingCartItem> _shoppingCartRepository;
+        private readonly INopDataProvider<MerchantDB> _dataProvider;
+        private readonly IRepository<Address, MerchantDB> _customerAddressRepository;
+        private readonly IRepository<BlogComment, MerchantDB> _blogCommentRepository;
+        private readonly IRepository<Customer, MerchantDB> _customerRepository;
+        private readonly IRepository<CustomerAddressMapping, MerchantDB> _customerAddressMappingRepository;
+        private readonly IRepository<CustomerCustomerRoleMapping, MerchantDB> _customerCustomerRoleMappingRepository;
+        private readonly IRepository<CustomerPassword, MerchantDB> _customerPasswordRepository;
+        private readonly IRepository<CustomerRole, MerchantDB> _customerRoleRepository;
+        private readonly IRepository<ForumPost, MerchantDB> _forumPostRepository;
+        private readonly IRepository<ForumTopic, MerchantDB> _forumTopicRepository;
+        private readonly IRepository<GenericAttribute, MerchantDB> _gaRepository;
+        private readonly IRepository<NewsComment, MerchantDB> _newsCommentRepository;
+        private readonly IRepository<Order, MerchantDB> _orderRepository;
+        private readonly IRepository<ProductReview, MerchantDB> _productReviewRepository;
+        private readonly IRepository<ProductReviewHelpfulness, MerchantDB> _productReviewHelpfulnessRepository;
+        private readonly IRepository<PollVotingRecord, MerchantDB> _pollVotingRecordRepository;
+        private readonly IRepository<ShoppingCartItem, MerchantDB> _shoppingCartRepository;
         private readonly IStaticCacheManager _staticCacheManager;
         private readonly IStoreContext _storeContext;
         private readonly ShoppingCartSettings _shoppingCartSettings;
@@ -59,23 +60,23 @@ namespace Nop.Services.Customers
 
         public CustomerService(CustomerSettings customerSettings,
             IGenericAttributeService genericAttributeService,
-            INopDataProvider dataProvider,
-            IRepository<Address> customerAddressRepository,
-            IRepository<BlogComment> blogCommentRepository,
-            IRepository<Customer> customerRepository,
-            IRepository<CustomerAddressMapping> customerAddressMappingRepository,
-            IRepository<CustomerCustomerRoleMapping> customerCustomerRoleMappingRepository,
-            IRepository<CustomerPassword> customerPasswordRepository,
-            IRepository<CustomerRole> customerRoleRepository,
-            IRepository<ForumPost> forumPostRepository,
-            IRepository<ForumTopic> forumTopicRepository,
-            IRepository<GenericAttribute> gaRepository,
-            IRepository<NewsComment> newsCommentRepository,
-            IRepository<Order> orderRepository,
-            IRepository<ProductReview> productReviewRepository,
-            IRepository<ProductReviewHelpfulness> productReviewHelpfulnessRepository,
-            IRepository<PollVotingRecord> pollVotingRecordRepository,
-            IRepository<ShoppingCartItem> shoppingCartRepository,
+            INopDataProvider<MerchantDB> dataProvider,
+            IRepository<Address, MerchantDB> customerAddressRepository,
+            IRepository<BlogComment, MerchantDB> blogCommentRepository,
+            IRepository<Customer, MerchantDB> customerRepository,
+            IRepository<CustomerAddressMapping, MerchantDB> customerAddressMappingRepository,
+            IRepository<CustomerCustomerRoleMapping, MerchantDB> customerCustomerRoleMappingRepository,
+            IRepository<CustomerPassword, MerchantDB> customerPasswordRepository,
+            IRepository<CustomerRole, MerchantDB> customerRoleRepository,
+            IRepository<ForumPost, MerchantDB> forumPostRepository,
+            IRepository<ForumTopic, MerchantDB> forumTopicRepository,
+            IRepository<GenericAttribute, MerchantDB> gaRepository,
+            IRepository<NewsComment, MerchantDB> newsCommentRepository,
+            IRepository<Order, MerchantDB> orderRepository,
+            IRepository<ProductReview, MerchantDB> productReviewRepository,
+            IRepository<ProductReviewHelpfulness, MerchantDB> productReviewHelpfulnessRepository,
+            IRepository<PollVotingRecord, MerchantDB> pollVotingRecordRepository,
+            IRepository<ShoppingCartItem, MerchantDB> shoppingCartRepository,
             IStaticCacheManager staticCacheManager,
             IStoreContext storeContext,
             ShoppingCartSettings shoppingCartSettings)

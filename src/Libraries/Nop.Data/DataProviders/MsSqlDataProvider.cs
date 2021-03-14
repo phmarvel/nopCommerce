@@ -11,6 +11,7 @@ using LinqToDB.DataProvider;
 using LinqToDB.DataProvider.SqlServer;
 using Nop.Core;
 using Nop.Core.Infrastructure;
+using Nop.Data.DataBase;
 using Nop.Data.Migrations;
 
 namespace Nop.Data.DataProviders
@@ -18,7 +19,7 @@ namespace Nop.Data.DataProviders
     /// <summary>
     /// Represents the MS SQL Server data provider
     /// </summary>
-    public partial class MsSqlNopDataProvider : BaseDataProvider, INopDataProvider
+    public partial class MsSqlNopDataProvider<DBType> : BaseDataProvider<DBType>, INopDataProvider<DBType> where DBType: IDBType
     {
         #region Utils
 

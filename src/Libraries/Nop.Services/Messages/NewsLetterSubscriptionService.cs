@@ -6,6 +6,7 @@ using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Messages;
 using Nop.Core.Events;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Customers;
 
 namespace Nop.Services.Messages
@@ -19,9 +20,9 @@ namespace Nop.Services.Messages
 
         private readonly ICustomerService _customerService;
         private readonly IEventPublisher _eventPublisher;
-        private readonly IRepository<Customer> _customerRepository;
-        private readonly IRepository<CustomerCustomerRoleMapping> _customerCustomerRoleMappingRepository;
-        private readonly IRepository<NewsLetterSubscription> _subscriptionRepository;
+        private readonly IRepository<Customer, MerchantDB> _customerRepository;
+        private readonly IRepository<CustomerCustomerRoleMapping, MerchantDB> _customerCustomerRoleMappingRepository;
+        private readonly IRepository<NewsLetterSubscription, MerchantDB> _subscriptionRepository;
 
         #endregion
 
@@ -29,9 +30,9 @@ namespace Nop.Services.Messages
 
         public NewsLetterSubscriptionService(ICustomerService customerService,
             IEventPublisher eventPublisher,
-            IRepository<Customer> customerRepository,
-            IRepository<CustomerCustomerRoleMapping> customerCustomerRoleMappingRepository,
-            IRepository<NewsLetterSubscription> subscriptionRepository)
+            IRepository<Customer, MerchantDB> customerRepository,
+            IRepository<CustomerCustomerRoleMapping, MerchantDB> customerCustomerRoleMappingRepository,
+            IRepository<NewsLetterSubscription, MerchantDB> subscriptionRepository)
         {
             _customerService = customerService;
             _eventPublisher = eventPublisher;

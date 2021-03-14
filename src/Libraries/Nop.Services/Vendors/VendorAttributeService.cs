@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Vendors;
 using Nop.Data;
+using Nop.Data.DataBase;
 
 namespace Nop.Services.Vendors
 {
@@ -14,16 +15,16 @@ namespace Nop.Services.Vendors
     {
         #region Fields
 
-        private readonly IRepository<VendorAttribute> _vendorAttributeRepository;
-        private readonly IRepository<VendorAttributeValue> _vendorAttributeValueRepository;
+        private readonly IRepository<VendorAttribute, MerchantDB> _vendorAttributeRepository;
+        private readonly IRepository<VendorAttributeValue, MerchantDB> _vendorAttributeValueRepository;
         private readonly IStaticCacheManager _staticCacheManager;
 
         #endregion
 
         #region Ctor
 
-        public VendorAttributeService(IRepository<VendorAttribute> vendorAttributeRepository,
-            IRepository<VendorAttributeValue> vendorAttributeValueRepository,
+        public VendorAttributeService(IRepository<VendorAttribute, MerchantDB> vendorAttributeRepository,
+            IRepository<VendorAttributeValue, MerchantDB> vendorAttributeValueRepository,
             IStaticCacheManager staticCacheManager)
         {
             _vendorAttributeRepository = vendorAttributeRepository;

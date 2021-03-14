@@ -39,6 +39,7 @@ using Nop.Core.Http;
 using Nop.Core.Infrastructure;
 using Nop.Core.Security;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Blogs;
 using Nop.Services.Catalog;
 using Nop.Services.Common;
@@ -60,70 +61,70 @@ namespace Nop.Services.Installation
     {
         #region Fields
 
-        private readonly INopDataProvider _dataProvider;
+        private readonly INopDataProvider<MerchantDB> _dataProvider;
         private readonly INopFileProvider _fileProvider;
-        private readonly IRepository<ActivityLogType> _activityLogTypeRepository;
-        private readonly IRepository<Address> _addressRepository;
-        private readonly IRepository<Category> _categoryRepository;
-        private readonly IRepository<CategoryTemplate> _categoryTemplateRepository;
-        private readonly IRepository<Country> _countryRepository;
-        private readonly IRepository<Currency> _currencyRepository;
-        private readonly IRepository<Customer> _customerRepository;
-        private readonly IRepository<CustomerRole> _customerRoleRepository;
-        private readonly IRepository<DeliveryDate> _deliveryDateRepository;
-        private readonly IRepository<EmailAccount> _emailAccountRepository;
-        private readonly IRepository<Language> _languageRepository;
-        private readonly IRepository<Manufacturer> _manufacturerRepository;
-        private readonly IRepository<ManufacturerTemplate> _manufacturerTemplateRepository;
-        private readonly IRepository<MeasureDimension> _measureDimensionRepository;
-        private readonly IRepository<MeasureWeight> _measureWeightRepository;
-        private readonly IRepository<Product> _productRepository;
-        private readonly IRepository<ProductAttribute> _productAttributeRepository;
-        private readonly IRepository<ProductAvailabilityRange> _productAvailabilityRangeRepository;
-        private readonly IRepository<ProductTag> _productTagRepository;
-        private readonly IRepository<ProductTemplate> _productTemplateRepository;
-        private readonly IRepository<SpecificationAttribute> _specificationAttributeRepository;
-        private readonly IRepository<SpecificationAttributeOption> _specificationAttributeOptionRepository;
-        private readonly IRepository<StateProvince> _stateProvinceRepository;
-        private readonly IRepository<Store> _storeRepository;
-        private readonly IRepository<TaxCategory> _taxCategoryRepository;
-        private readonly IRepository<TopicTemplate> _topicTemplateRepository;
-        private readonly IRepository<UrlRecord> _urlRecordRepository;
+        private readonly IRepository<ActivityLogType, MerchantDB> _activityLogTypeRepository;
+        private readonly IRepository<Address, MerchantDB> _addressRepository;
+        private readonly IRepository<Category, MerchantDB> _categoryRepository;
+        private readonly IRepository<CategoryTemplate, MerchantDB> _categoryTemplateRepository;
+        private readonly IRepository<Country, MerchantDB> _countryRepository;
+        private readonly IRepository<Currency, MerchantDB> _currencyRepository;
+        private readonly IRepository<Customer, MerchantDB> _customerRepository;
+        private readonly IRepository<CustomerRole, MerchantDB> _customerRoleRepository;
+        private readonly IRepository<DeliveryDate, MerchantDB> _deliveryDateRepository;
+        private readonly IRepository<EmailAccount, MerchantDB> _emailAccountRepository;
+        private readonly IRepository<Language, MerchantDB> _languageRepository;
+        private readonly IRepository<Manufacturer, MerchantDB> _manufacturerRepository;
+        private readonly IRepository<ManufacturerTemplate, MerchantDB> _manufacturerTemplateRepository;
+        private readonly IRepository<MeasureDimension, MerchantDB> _measureDimensionRepository;
+        private readonly IRepository<MeasureWeight, MerchantDB> _measureWeightRepository;
+        private readonly IRepository<Product, MerchantDB> _productRepository;
+        private readonly IRepository<ProductAttribute, MerchantDB> _productAttributeRepository;
+        private readonly IRepository<ProductAvailabilityRange, MerchantDB> _productAvailabilityRangeRepository;
+        private readonly IRepository<ProductTag, MerchantDB> _productTagRepository;
+        private readonly IRepository<ProductTemplate, MerchantDB> _productTemplateRepository;
+        private readonly IRepository<SpecificationAttribute, MerchantDB> _specificationAttributeRepository;
+        private readonly IRepository<SpecificationAttributeOption, MerchantDB> _specificationAttributeOptionRepository;
+        private readonly IRepository<StateProvince, MerchantDB> _stateProvinceRepository;
+        private readonly IRepository<Store, MerchantDB> _storeRepository;
+        private readonly IRepository<TaxCategory, MerchantDB> _taxCategoryRepository;
+        private readonly IRepository<TopicTemplate, MerchantDB> _topicTemplateRepository;
+        private readonly IRepository<UrlRecord, MerchantDB> _urlRecordRepository;
         private readonly IWebHelper _webHelper;
 
         #endregion
 
         #region Ctor
 
-        public InstallationService(INopDataProvider dataProvider,
+        public InstallationService(INopDataProvider<MerchantDB> dataProvider,
             INopFileProvider fileProvider,
-            IRepository<ActivityLogType> activityLogTypeRepository,
-            IRepository<Address> addressRepository,
-            IRepository<Category> categoryRepository,
-            IRepository<CategoryTemplate> categoryTemplateRepository,
-            IRepository<Country> countryRepository,
-            IRepository<Currency> currencyRepository,
-            IRepository<Customer> customerRepository,
-            IRepository<CustomerRole> customerRoleRepository,
-            IRepository<DeliveryDate> deliveryDateRepository,
-            IRepository<EmailAccount> emailAccountRepository,
-            IRepository<Language> languageRepository,
-            IRepository<Manufacturer> manufacturerRepository,
-            IRepository<ManufacturerTemplate> manufacturerTemplateRepository,
-            IRepository<MeasureDimension> measureDimensionRepository,
-            IRepository<MeasureWeight> measureWeightRepository,
-            IRepository<Product> productRepository,
-            IRepository<ProductAttribute> productAttributeRepository,
-            IRepository<ProductAvailabilityRange> productAvailabilityRangeRepository,
-            IRepository<ProductTag> productTagRepository,
-            IRepository<ProductTemplate> productTemplateRepository,
-            IRepository<SpecificationAttribute> specificationAttributeRepository,
-            IRepository<SpecificationAttributeOption> specificationAttributeOptionRepository,
-            IRepository<StateProvince> stateProvinceRepository,
-            IRepository<Store> storeRepository,
-            IRepository<TaxCategory> taxCategoryRepository,
-            IRepository<TopicTemplate> topicTemplateRepository,
-            IRepository<UrlRecord> urlRecordRepository,
+            IRepository<ActivityLogType, MerchantDB> activityLogTypeRepository,
+            IRepository<Address, MerchantDB> addressRepository,
+            IRepository<Category, MerchantDB> categoryRepository,
+            IRepository<CategoryTemplate, MerchantDB> categoryTemplateRepository,
+            IRepository<Country, MerchantDB> countryRepository,
+            IRepository<Currency, MerchantDB> currencyRepository,
+            IRepository<Customer, MerchantDB> customerRepository,
+            IRepository<CustomerRole, MerchantDB> customerRoleRepository,
+            IRepository<DeliveryDate, MerchantDB> deliveryDateRepository,
+            IRepository<EmailAccount, MerchantDB> emailAccountRepository,
+            IRepository<Language, MerchantDB> languageRepository,
+            IRepository<Manufacturer, MerchantDB> manufacturerRepository,
+            IRepository<ManufacturerTemplate, MerchantDB> manufacturerTemplateRepository,
+            IRepository<MeasureDimension, MerchantDB> measureDimensionRepository,
+            IRepository<MeasureWeight, MerchantDB> measureWeightRepository,
+            IRepository<Product, MerchantDB> productRepository,
+            IRepository<ProductAttribute, MerchantDB> productAttributeRepository,
+            IRepository<ProductAvailabilityRange, MerchantDB> productAvailabilityRangeRepository,
+            IRepository<ProductTag, MerchantDB> productTagRepository,
+            IRepository<ProductTemplate, MerchantDB> productTemplateRepository,
+            IRepository<SpecificationAttribute, MerchantDB> specificationAttributeRepository,
+            IRepository<SpecificationAttributeOption, MerchantDB> specificationAttributeOptionRepository,
+            IRepository<StateProvince, MerchantDB> stateProvinceRepository,
+            IRepository<Store, MerchantDB> storeRepository,
+            IRepository<TaxCategory, MerchantDB> taxCategoryRepository,
+            IRepository<TopicTemplate, MerchantDB> topicTemplateRepository,
+            IRepository<UrlRecord, MerchantDB> urlRecordRepository,
             IWebHelper webHelper)
         {
             _dataProvider = dataProvider;

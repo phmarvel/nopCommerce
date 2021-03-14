@@ -8,6 +8,7 @@ using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Discounts;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Customers;
 using Nop.Services.Discounts;
 using Nop.Services.Security;
@@ -26,11 +27,11 @@ namespace Nop.Services.Catalog
         private readonly IAclService _aclService;
         private readonly ICategoryService _categoryService;
         private readonly ICustomerService _customerService;
-        private readonly IRepository<DiscountManufacturerMapping> _discountManufacturerMappingRepository;
-        private readonly IRepository<Manufacturer> _manufacturerRepository;
-        private readonly IRepository<Product> _productRepository;
-        private readonly IRepository<ProductManufacturer> _productManufacturerRepository;
-        private readonly IRepository<ProductCategory> _productCategoryRepository;
+        private readonly IRepository<DiscountManufacturerMapping, MerchantDB> _discountManufacturerMappingRepository;
+        private readonly IRepository<Manufacturer, MerchantDB> _manufacturerRepository;
+        private readonly IRepository<Product, MerchantDB> _productRepository;
+        private readonly IRepository<ProductManufacturer, MerchantDB> _productManufacturerRepository;
+        private readonly IRepository<ProductCategory, MerchantDB> _productCategoryRepository;
         private readonly IStaticCacheManager _staticCacheManager;
         private readonly IStoreContext _storeContext;
         private readonly IStoreMappingService _storeMappingService;
@@ -44,11 +45,11 @@ namespace Nop.Services.Catalog
             IAclService aclService,
             ICategoryService categoryService,
             ICustomerService customerService,
-            IRepository<DiscountManufacturerMapping> discountManufacturerMappingRepository,
-            IRepository<Manufacturer> manufacturerRepository,
-            IRepository<Product> productRepository,
-            IRepository<ProductManufacturer> productManufacturerRepository,
-            IRepository<ProductCategory> productCategoryRepository,
+            IRepository<DiscountManufacturerMapping, MerchantDB> discountManufacturerMappingRepository,
+            IRepository<Manufacturer, MerchantDB> manufacturerRepository,
+            IRepository<Product, MerchantDB> productRepository,
+            IRepository<ProductManufacturer, MerchantDB> productManufacturerRepository,
+            IRepository<ProductCategory, MerchantDB> productCategoryRepository,
             IStaticCacheManager staticCacheManager,
             IStoreContext storeContext,
             IStoreMappingService storeMappingService,

@@ -9,6 +9,7 @@ using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Shipping;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Catalog;
 using Nop.Services.Common;
 using Nop.Services.Customers;
@@ -38,9 +39,9 @@ namespace Nop.Services.Shipping
         private readonly IPriceCalculationService _priceCalculationService;
         private readonly IProductAttributeParser _productAttributeParser;
         private readonly IProductService _productService;
-        private readonly IRepository<ShippingMethod> _shippingMethodRepository;
-        private readonly IRepository<ShippingMethodCountryMapping> _shippingMethodCountryMappingRepository;
-        private readonly IRepository<Warehouse> _warehouseRepository;
+        private readonly IRepository<ShippingMethod, MerchantDB> _shippingMethodRepository;
+        private readonly IRepository<ShippingMethodCountryMapping, MerchantDB> _shippingMethodCountryMappingRepository;
+        private readonly IRepository<Warehouse, MerchantDB> _warehouseRepository;
         private readonly IShippingPluginManager _shippingPluginManager;
         private readonly IStateProvinceService _stateProvinceService;
         private readonly IStoreContext _storeContext;
@@ -62,9 +63,9 @@ namespace Nop.Services.Shipping
             IPriceCalculationService priceCalculationService,
             IProductAttributeParser productAttributeParser,
             IProductService productService,
-            IRepository<ShippingMethod> shippingMethodRepository,
-            IRepository<ShippingMethodCountryMapping> shippingMethodCountryMappingRepository,
-            IRepository<Warehouse> warehouseRepository,
+            IRepository<ShippingMethod, MerchantDB> shippingMethodRepository,
+            IRepository<ShippingMethodCountryMapping, MerchantDB> shippingMethodCountryMappingRepository,
+            IRepository<Warehouse, MerchantDB> warehouseRepository,
             IShippingPluginManager shippingPluginManager,
             IStateProvinceService stateProvinceService,
             IStoreContext storeContext,

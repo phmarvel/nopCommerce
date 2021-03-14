@@ -56,7 +56,6 @@ namespace Nop.Services.Stores
         /// <param name="host">Host</param>
         /// <returns>true - contains, false - no</returns>
         bool ContainsHostValue(Store store, string host);
-
         /// <summary>
         /// Returns a list of names of not existing stores
         /// </summary>

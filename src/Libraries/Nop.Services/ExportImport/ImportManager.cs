@@ -17,6 +17,7 @@ using Nop.Core.Domain.Vendors;
 using Nop.Core.Http;
 using Nop.Core.Infrastructure;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Catalog;
 using Nop.Services.Directory;
 using Nop.Services.ExportImport.Help;
@@ -54,7 +55,7 @@ namespace Nop.Services.ExportImport
         private readonly ICategoryService _categoryService;
         private readonly ICountryService _countryService;
         private readonly ICustomerActivityService _customerActivityService;
-        private readonly INopDataProvider _dataProvider;
+        private readonly INopDataProvider<MerchantDB> _dataProvider;
         private readonly IDateRangeService _dateRangeService;
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly ILocalizationService _localizationService;
@@ -90,7 +91,7 @@ namespace Nop.Services.ExportImport
             ICategoryService categoryService,
             ICountryService countryService,
             ICustomerActivityService customerActivityService,
-            INopDataProvider dataProvider,
+            INopDataProvider<MerchantDB> dataProvider,
             IDateRangeService dateRangeService,
             IHttpClientFactory httpClientFactory,
             ILocalizationService localizationService,

@@ -13,6 +13,7 @@ using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Discounts;
 using Nop.Core.Domain.Orders;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Catalog;
 using Nop.Services.Common;
 using Nop.Services.Customers;
@@ -51,7 +52,7 @@ namespace Nop.Services.Orders
         private readonly IProductAttributeParser _productAttributeParser;
         private readonly IProductAttributeService _productAttributeService;
         private readonly IProductService _productService;
-        private readonly IRepository<ShoppingCartItem> _sciRepository;
+        private readonly IRepository<ShoppingCartItem, MerchantDB> _sciRepository;
         private readonly IShippingService _shippingService;
         private readonly IStaticCacheManager _staticCacheManager;
         private readonly IStoreContext _storeContext;
@@ -83,7 +84,7 @@ namespace Nop.Services.Orders
             IProductAttributeParser productAttributeParser,
             IProductAttributeService productAttributeService,
             IProductService productService,
-            IRepository<ShoppingCartItem> sciRepository,
+            IRepository<ShoppingCartItem, MerchantDB> sciRepository,
             IShippingService shippingService,
             IStaticCacheManager staticCacheManager,
             IStoreContext storeContext,

@@ -7,6 +7,7 @@ using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Gdpr;
 using Nop.Core.Events;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Authentication.External;
 using Nop.Services.Blogs;
 using Nop.Services.Catalog;
@@ -38,8 +39,8 @@ namespace Nop.Services.Gdpr
         private readonly INewsLetterSubscriptionService _newsLetterSubscriptionService;
         private readonly INewsService _newsService;
         private readonly IProductService _productService;
-        private readonly IRepository<GdprConsent> _gdprConsentRepository;
-        private readonly IRepository<GdprLog> _gdprLogRepository;
+        private readonly IRepository<GdprConsent, MerchantDB> _gdprConsentRepository;
+        private readonly IRepository<GdprLog, MerchantDB> _gdprLogRepository;
         private readonly IShoppingCartService _shoppingCartService;
         private readonly IStoreService _storeService;
 
@@ -58,8 +59,8 @@ namespace Nop.Services.Gdpr
             INewsService newsService,
             INewsLetterSubscriptionService newsLetterSubscriptionService,
             IProductService productService,
-            IRepository<GdprConsent> gdprConsentRepository,
-            IRepository<GdprLog> gdprLogRepository,
+            IRepository<GdprConsent, MerchantDB> gdprConsentRepository,
+            IRepository<GdprLog, MerchantDB> gdprLogRepository,
             IShoppingCartService shoppingCartService,
             IStoreService storeService)
         {

@@ -14,6 +14,7 @@ using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Tax;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Plugin.Tax.Avalara.Domain;
 using Nop.Services.Catalog;
 using Nop.Services.Common;
@@ -51,8 +52,8 @@ namespace Nop.Plugin.Tax.Avalara.Services
         private readonly IPaymentService _paymentService;
         private readonly IProductAttributeService _productAttributeService;
         private readonly IProductService _productService;
-        private readonly IRepository<GenericAttribute> _genericAttributeRepository;
-        private readonly IRepository<TaxCategory> _taxCategoryRepository;
+        private readonly IRepository<GenericAttribute, MerchantDB> _genericAttributeRepository;
+        private readonly IRepository<TaxCategory, MerchantDB> _taxCategoryRepository;
         private readonly ISettingService _settingService;
         private readonly IShoppingCartService _shoppingCartService;
         private readonly IStateProvinceService _stateProvinceService;
@@ -90,8 +91,8 @@ namespace Nop.Plugin.Tax.Avalara.Services
             IPaymentService paymentService,
             IProductAttributeService productAttributeService,
             IProductService productService,
-            IRepository<GenericAttribute> genericAttributeRepository,
-            IRepository<TaxCategory> taxCategoryRepository,
+            IRepository<GenericAttribute, MerchantDB> genericAttributeRepository,
+            IRepository<TaxCategory, MerchantDB> taxCategoryRepository,
             ISettingService settingService,
             IShoppingCartService shoppingCartService,
             IStateProvinceService stateProvinceService,

@@ -6,6 +6,7 @@ using Nop.Core;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Logging;
 using Nop.Data;
+using Nop.Data.DataBase;
 
 namespace Nop.Services.Logging
 {
@@ -16,8 +17,8 @@ namespace Nop.Services.Logging
     {
         #region Fields
 
-        private readonly IRepository<ActivityLog> _activityLogRepository;
-        private readonly IRepository<ActivityLogType> _activityLogTypeRepository;
+        private readonly IRepository<ActivityLog, MerchantDB> _activityLogRepository;
+        private readonly IRepository<ActivityLogType, MerchantDB> _activityLogTypeRepository;
         private readonly IWebHelper _webHelper;
         private readonly IWorkContext _workContext;
 
@@ -25,8 +26,8 @@ namespace Nop.Services.Logging
 
         #region Ctor
 
-        public CustomerActivityService(IRepository<ActivityLog> activityLogRepository,
-            IRepository<ActivityLogType> activityLogTypeRepository,
+        public CustomerActivityService(IRepository<ActivityLog, MerchantDB> activityLogRepository,
+            IRepository<ActivityLogType, MerchantDB> activityLogTypeRepository,
             IWebHelper webHelper,
             IWorkContext workContext)
         {

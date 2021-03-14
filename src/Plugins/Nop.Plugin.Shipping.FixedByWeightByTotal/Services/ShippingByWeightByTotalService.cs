@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Plugin.Shipping.FixedByWeightByTotal.Domain;
 
 namespace Nop.Plugin.Shipping.FixedByWeightByTotal.Services
@@ -25,14 +26,14 @@ namespace Nop.Plugin.Shipping.FixedByWeightByTotal.Services
 
         #region Fields
 
-        private readonly IRepository<ShippingByWeightByTotalRecord> _sbwtRepository;
+        private readonly IRepository<ShippingByWeightByTotalRecord, MerchantDB> _sbwtRepository;
         private readonly IStaticCacheManager _staticCacheManager;
 
         #endregion
 
         #region Ctor
 
-        public ShippingByWeightByTotalService(IRepository<ShippingByWeightByTotalRecord> sbwtRepository,
+        public ShippingByWeightByTotalService(IRepository<ShippingByWeightByTotalRecord, MerchantDB> sbwtRepository,
             IStaticCacheManager staticCacheManager)
         {
             _sbwtRepository = sbwtRepository;

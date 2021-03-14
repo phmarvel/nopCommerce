@@ -23,6 +23,7 @@ using Nop.Core.Domain.Security;
 using Nop.Core.Events;
 using Nop.Core.Infrastructure;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Authentication.External;
 using Nop.Services.Authentication.MultiFactor;
 using Nop.Services.Catalog;
@@ -66,7 +67,7 @@ namespace Nop.Web.Areas.Admin.Factories
         private readonly ICurrencyService _currencyService;
         private readonly ICustomerService _customerService;
         private readonly IEventPublisher _eventPublisher;
-        private readonly INopDataProvider _dataProvider;
+        private readonly INopDataProvider<MerchantDB> _dataProvider;
         private readonly IDateTimeHelper _dateTimeHelper;
         private readonly IExchangeRatePluginManager _exchangeRatePluginManager;
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -112,7 +113,7 @@ namespace Nop.Web.Areas.Admin.Factories
             ICurrencyService currencyService,
             ICustomerService customerService,
             IEventPublisher eventPublisher,
-            INopDataProvider dataProvider,
+            INopDataProvider<MerchantDB> dataProvider,
             IDateTimeHelper dateTimeHelper,
             INopFileProvider fileProvider,
             IExchangeRatePluginManager exchangeRatePluginManager,

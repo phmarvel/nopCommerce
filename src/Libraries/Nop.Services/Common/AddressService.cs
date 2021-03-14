@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Common;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Directory;
 
 namespace Nop.Services.Common
@@ -20,7 +21,7 @@ namespace Nop.Services.Common
         private readonly IAddressAttributeParser _addressAttributeParser;
         private readonly IAddressAttributeService _addressAttributeService;
         private readonly ICountryService _countryService;
-        private readonly IRepository<Address> _addressRepository;
+        private readonly IRepository<Address, MerchantDB> _addressRepository;
         private readonly IStateProvinceService _stateProvinceService;
 
         #endregion
@@ -31,7 +32,7 @@ namespace Nop.Services.Common
             IAddressAttributeParser addressAttributeParser,
             IAddressAttributeService addressAttributeService,
             ICountryService countryService,
-            IRepository<Address> addressRepository,
+            IRepository<Address, MerchantDB> addressRepository,
             IStateProvinceService stateProvinceService)
         {
             _addressSettings = addressSettings;

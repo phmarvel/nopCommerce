@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Nop.Core.Domain.Tasks;
 using Nop.Data;
+using Nop.Data.DataBase;
 
 namespace Nop.Services.Tasks
 {
@@ -14,13 +15,13 @@ namespace Nop.Services.Tasks
     {
         #region Fields
 
-        private readonly IRepository<ScheduleTask> _taskRepository;
+        private readonly IRepository<ScheduleTask, MerchantDB> _taskRepository;
 
         #endregion
 
         #region Ctor
 
-        public ScheduleTaskService(IRepository<ScheduleTask> taskRepository)
+        public ScheduleTaskService(IRepository<ScheduleTask, MerchantDB> taskRepository)
         {
             _taskRepository = taskRepository;
         }

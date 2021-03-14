@@ -7,6 +7,7 @@ using Nop.Core.Caching;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Security;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Customers;
 using Nop.Services.Localization;
 
@@ -21,8 +22,8 @@ namespace Nop.Services.Security
 
         private readonly ICustomerService _customerService;
         private readonly ILocalizationService _localizationService;
-        private readonly IRepository<PermissionRecord> _permissionRecordRepository;
-        private readonly IRepository<PermissionRecordCustomerRoleMapping> _permissionRecordCustomerRoleMappingRepository;
+        private readonly IRepository<PermissionRecord, MerchantDB> _permissionRecordRepository;
+        private readonly IRepository<PermissionRecordCustomerRoleMapping, MerchantDB> _permissionRecordCustomerRoleMappingRepository;
         private readonly IStaticCacheManager _staticCacheManager;
         private readonly IWorkContext _workContext;
 
@@ -32,8 +33,8 @@ namespace Nop.Services.Security
 
         public PermissionService(ICustomerService customerService,
             ILocalizationService localizationService,
-            IRepository<PermissionRecord> permissionRecordRepository,
-            IRepository<PermissionRecordCustomerRoleMapping> permissionRecordCustomerRoleMappingRepository,
+            IRepository<PermissionRecord, MerchantDB> permissionRecordRepository,
+            IRepository<PermissionRecordCustomerRoleMapping, MerchantDB> permissionRecordCustomerRoleMappingRepository,
             IStaticCacheManager staticCacheManager,
             IWorkContext workContext)
         {

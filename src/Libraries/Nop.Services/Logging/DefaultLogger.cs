@@ -7,6 +7,7 @@ using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Logging;
 using Nop.Data;
+using Nop.Data.DataBase;
 
 namespace Nop.Services.Logging
 {
@@ -19,7 +20,7 @@ namespace Nop.Services.Logging
 
         private readonly CommonSettings _commonSettings;
         
-        private readonly IRepository<Log> _logRepository;
+        private readonly IRepository<Log, MerchantDB> _logRepository;
         private readonly IWebHelper _webHelper;
 
         #endregion
@@ -27,7 +28,7 @@ namespace Nop.Services.Logging
         #region Ctor
 
         public DefaultLogger(CommonSettings commonSettings,
-            IRepository<Log> logRepository,
+            IRepository<Log, MerchantDB> logRepository,
             IWebHelper webHelper)
         {
             _commonSettings = commonSettings;

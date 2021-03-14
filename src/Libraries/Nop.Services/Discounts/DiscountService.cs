@@ -9,6 +9,7 @@ using Nop.Core.Domain.Discounts;
 using Nop.Core.Domain.Orders;
 using Nop.Core.Infrastructure;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Catalog;
 using Nop.Services.Customers;
 using Nop.Services.Localization;
@@ -27,10 +28,10 @@ namespace Nop.Services.Discounts
         private readonly IDiscountPluginManager _discountPluginManager;
         private readonly ILocalizationService _localizationService;
         private readonly IProductService _productService;
-        private readonly IRepository<Discount> _discountRepository;
-        private readonly IRepository<DiscountRequirement> _discountRequirementRepository;
-        private readonly IRepository<DiscountUsageHistory> _discountUsageHistoryRepository;
-        private readonly IRepository<Order> _orderRepository;
+        private readonly IRepository<Discount, MerchantDB> _discountRepository;
+        private readonly IRepository<DiscountRequirement, MerchantDB> _discountRequirementRepository;
+        private readonly IRepository<DiscountUsageHistory, MerchantDB> _discountUsageHistoryRepository;
+        private readonly IRepository<Order, MerchantDB> _orderRepository;
         private readonly IStaticCacheManager _staticCacheManager;
         private readonly IStoreContext _storeContext;
 
@@ -42,10 +43,10 @@ namespace Nop.Services.Discounts
             IDiscountPluginManager discountPluginManager,
             ILocalizationService localizationService,
             IProductService productService,
-            IRepository<Discount> discountRepository,
-            IRepository<DiscountRequirement> discountRequirementRepository,
-            IRepository<DiscountUsageHistory> discountUsageHistoryRepository,
-            IRepository<Order> orderRepository,
+            IRepository<Discount, MerchantDB> discountRepository,
+            IRepository<DiscountRequirement, MerchantDB> discountRequirementRepository,
+            IRepository<DiscountUsageHistory, MerchantDB> discountUsageHistoryRepository,
+            IRepository<Order, MerchantDB> orderRepository,
             IStaticCacheManager staticCacheManager,
             IStoreContext storeContext)
         {
@@ -231,7 +232,7 @@ namespace Nop.Services.Discounts
         /// </returns>
         public virtual async Task<IList<Discount>> GetAppliedDiscountsAsync<T>(IDiscountSupported<T> entity) where T : DiscountMapping
         {
-            var discountMappingRepository = EngineContext.Current.Resolve<IRepository<T>>();
+            var discountMappingRepository = EngineContext.Current.Resolve<IRepository<T, MerchantDB>>();
 
             return await (from d in _discountRepository.Table
                     join ad in discountMappingRepository.Table on d.Id equals ad.DiscountId

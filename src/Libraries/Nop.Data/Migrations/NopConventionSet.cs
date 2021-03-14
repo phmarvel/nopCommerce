@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using FluentMigrator.Runner;
 using FluentMigrator.Runner.Conventions;
+using Nop.Data.DataBase;
 
 namespace Nop.Data.Migrations
 {
     /// <summary>
     /// A set conventions to be applied to expressions
     /// </summary>
-    public class NopConventionSet : IConventionSet
+    public class NopConventionSet<DBType> : IConventionSet where DBType: IDBType
     {
         #region Ctor
 
-        public NopConventionSet(INopDataProvider dataProvider)
+        public NopConventionSet(INopDataProvider<DBType> dataProvider)
         {
             if (dataProvider is null)
                 throw new ArgumentNullException(nameof(dataProvider));
@@ -21,13 +22,13 @@ namespace Nop.Data.Migrations
 
             ForeignKeyConventions = new List<IForeignKeyConvention>() 
             {
-                new NopForeignKeyConvention(dataProvider),
+                new NopForeignKeyConvention<DBType>(dataProvider),
                 defaultConventionSet.SchemaConvention,
             };
 
             IndexConventions = new List<IIndexConvention>() 
             {
-                new NopIndexConvention(dataProvider),
+                new NopIndexConvention<DBType>(dataProvider),
                 defaultConventionSet.SchemaConvention
             };
 

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Nop.Core.Domain.Tax;
 using Nop.Data;
+using Nop.Data.DataBase;
 
 namespace Nop.Services.Tax
 {
@@ -13,13 +14,13 @@ namespace Nop.Services.Tax
     {
         #region Fields
 
-        private readonly IRepository<TaxCategory> _taxCategoryRepository;
+        private readonly IRepository<TaxCategory, MerchantDB> _taxCategoryRepository;
 
         #endregion
 
         #region Ctor
 
-        public TaxCategoryService(IRepository<TaxCategory> taxCategoryRepository)
+        public TaxCategoryService(IRepository<TaxCategory, MerchantDB> taxCategoryRepository)
         {
             _taxCategoryRepository = taxCategoryRepository;
         }

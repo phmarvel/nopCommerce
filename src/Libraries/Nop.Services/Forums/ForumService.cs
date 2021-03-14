@@ -9,6 +9,7 @@ using Nop.Core.Domain.Forums;
 using Nop.Core.Domain.Seo;
 using Nop.Core.Html;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Data.Extensions;
 using Nop.Services.Common;
 using Nop.Services.Customers;
@@ -27,14 +28,14 @@ namespace Nop.Services.Forums
         private readonly ForumSettings _forumSettings;
         private readonly ICustomerService _customerService;
         private readonly IGenericAttributeService _genericAttributeService;
-        private readonly IRepository<Customer> _customerRepository;
-        private readonly IRepository<Forum> _forumRepository;
-        private readonly IRepository<ForumGroup> _forumGroupRepository;
-        private readonly IRepository<ForumPost> _forumPostRepository;
-        private readonly IRepository<ForumPostVote> _forumPostVoteRepository;
-        private readonly IRepository<ForumSubscription> _forumSubscriptionRepository;
-        private readonly IRepository<ForumTopic> _forumTopicRepository;
-        private readonly IRepository<PrivateMessage> _forumPrivateMessageRepository;
+        private readonly IRepository<Customer, MerchantDB> _customerRepository;
+        private readonly IRepository<Forum, MerchantDB> _forumRepository;
+        private readonly IRepository<ForumGroup, MerchantDB> _forumGroupRepository;
+        private readonly IRepository<ForumPost, MerchantDB> _forumPostRepository;
+        private readonly IRepository<ForumPostVote, MerchantDB> _forumPostVoteRepository;
+        private readonly IRepository<ForumSubscription, MerchantDB> _forumSubscriptionRepository;
+        private readonly IRepository<ForumTopic, MerchantDB> _forumTopicRepository;
+        private readonly IRepository<PrivateMessage, MerchantDB> _forumPrivateMessageRepository;
         private readonly IStaticCacheManager _staticCacheManager;
         private readonly IUrlRecordService _urlRecordService;
         private readonly IWorkContext _workContext;
@@ -48,14 +49,14 @@ namespace Nop.Services.Forums
         public ForumService(ForumSettings forumSettings,
             ICustomerService customerService,
             IGenericAttributeService genericAttributeService,
-            IRepository<Customer> customerRepository,
-            IRepository<Forum> forumRepository,
-            IRepository<ForumGroup> forumGroupRepository,
-            IRepository<ForumPost> forumPostRepository,
-            IRepository<ForumPostVote> forumPostVoteRepository,
-            IRepository<ForumSubscription> forumSubscriptionRepository,
-            IRepository<ForumTopic> forumTopicRepository,
-            IRepository<PrivateMessage> forumPrivateMessageRepository,
+            IRepository<Customer, MerchantDB> customerRepository,
+            IRepository<Forum, MerchantDB> forumRepository,
+            IRepository<ForumGroup, MerchantDB> forumGroupRepository,
+            IRepository<ForumPost, MerchantDB> forumPostRepository,
+            IRepository<ForumPostVote, MerchantDB> forumPostVoteRepository,
+            IRepository<ForumSubscription, MerchantDB> forumSubscriptionRepository,
+            IRepository<ForumTopic, MerchantDB> forumTopicRepository,
+            IRepository<PrivateMessage, MerchantDB> forumPrivateMessageRepository,
             IStaticCacheManager staticCacheManager,
             IUrlRecordService urlRecordService,
             IWorkContext workContext,

@@ -8,6 +8,7 @@ using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Shipping;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Shipping.Pickup;
 using Nop.Services.Shipping.Tracking;
 
@@ -21,12 +22,12 @@ namespace Nop.Services.Shipping
         #region Fields
 
         private readonly IPickupPluginManager _pickupPluginManager;
-        private readonly IRepository<Address> _addressRepository;
-        private readonly IRepository<Order> _orderRepository;
-        private readonly IRepository<OrderItem> _orderItemRepository;
-        private readonly IRepository<Product> _productRepository;
-        private readonly IRepository<Shipment> _shipmentRepository;
-        private readonly IRepository<ShipmentItem> _siRepository;
+        private readonly IRepository<Address, MerchantDB> _addressRepository;
+        private readonly IRepository<Order, MerchantDB> _orderRepository;
+        private readonly IRepository<OrderItem, MerchantDB> _orderItemRepository;
+        private readonly IRepository<Product, MerchantDB> _productRepository;
+        private readonly IRepository<Shipment, MerchantDB> _shipmentRepository;
+        private readonly IRepository<ShipmentItem, MerchantDB> _siRepository;
         private readonly IShippingPluginManager _shippingPluginManager;
 
         #endregion
@@ -34,12 +35,12 @@ namespace Nop.Services.Shipping
         #region Ctor
 
         public ShipmentService(IPickupPluginManager pickupPluginManager,
-            IRepository<Address> addressRepository,
-            IRepository<Order> orderRepository,
-            IRepository<OrderItem> orderItemRepository,
-            IRepository<Product> productRepository,
-            IRepository<Shipment> shipmentRepository,
-            IRepository<ShipmentItem> siRepository,
+            IRepository<Address, MerchantDB> addressRepository,
+            IRepository<Order, MerchantDB> orderRepository,
+            IRepository<OrderItem, MerchantDB> orderItemRepository,
+            IRepository<Product, MerchantDB> productRepository,
+            IRepository<Shipment, MerchantDB> shipmentRepository,
+            IRepository<ShipmentItem, MerchantDB> siRepository,
             IShippingPluginManager shippingPluginManager)
         {
             _pickupPluginManager = pickupPluginManager;

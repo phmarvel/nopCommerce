@@ -6,6 +6,7 @@ using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Catalog;
 using Nop.Data;
+using Nop.Data.DataBase;
 
 namespace Nop.Services.Catalog
 {
@@ -16,22 +17,22 @@ namespace Nop.Services.Catalog
     {
         #region Fields
 
-        private readonly IRepository<PredefinedProductAttributeValue> _predefinedProductAttributeValueRepository;
-        private readonly IRepository<ProductAttribute> _productAttributeRepository;
-        private readonly IRepository<ProductAttributeCombination> _productAttributeCombinationRepository;
-        private readonly IRepository<ProductAttributeMapping> _productAttributeMappingRepository;
-        private readonly IRepository<ProductAttributeValue> _productAttributeValueRepository;
+        private readonly IRepository<PredefinedProductAttributeValue, MerchantDB> _predefinedProductAttributeValueRepository;
+        private readonly IRepository<ProductAttribute, MerchantDB> _productAttributeRepository;
+        private readonly IRepository<ProductAttributeCombination, MerchantDB> _productAttributeCombinationRepository;
+        private readonly IRepository<ProductAttributeMapping, MerchantDB> _productAttributeMappingRepository;
+        private readonly IRepository<ProductAttributeValue, MerchantDB> _productAttributeValueRepository;
         private readonly IStaticCacheManager _staticCacheManager;
 
         #endregion
 
         #region Ctor
 
-        public ProductAttributeService(IRepository<PredefinedProductAttributeValue> predefinedProductAttributeValueRepository,
-            IRepository<ProductAttribute> productAttributeRepository,
-            IRepository<ProductAttributeCombination> productAttributeCombinationRepository,
-            IRepository<ProductAttributeMapping> productAttributeMappingRepository,
-            IRepository<ProductAttributeValue> productAttributeValueRepository,
+        public ProductAttributeService(IRepository<PredefinedProductAttributeValue, MerchantDB> predefinedProductAttributeValueRepository,
+            IRepository<ProductAttribute, MerchantDB> productAttributeRepository,
+            IRepository<ProductAttributeCombination, MerchantDB> productAttributeCombinationRepository,
+            IRepository<ProductAttributeMapping, MerchantDB> productAttributeMappingRepository,
+            IRepository<ProductAttributeValue, MerchantDB> productAttributeValueRepository,
             IStaticCacheManager staticCacheManager)
         {
             _predefinedProductAttributeValueRepository = predefinedProductAttributeValueRepository;

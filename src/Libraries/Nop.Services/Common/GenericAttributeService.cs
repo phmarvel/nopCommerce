@@ -6,6 +6,7 @@ using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Common;
 using Nop.Data;
+using Nop.Data.DataBase;
 
 namespace Nop.Services.Common
 {
@@ -16,14 +17,14 @@ namespace Nop.Services.Common
     {
         #region Fields
 
-        private readonly IRepository<GenericAttribute> _genericAttributeRepository;
+        private readonly IRepository<GenericAttribute, MerchantDB> _genericAttributeRepository;
         private readonly IStaticCacheManager _staticCacheManager;
 
         #endregion
 
         #region Ctor
 
-        public GenericAttributeService(IRepository<GenericAttribute> genericAttributeRepository,
+        public GenericAttributeService(IRepository<GenericAttribute, MerchantDB> genericAttributeRepository,
             IStaticCacheManager staticCacheManager)
         {
             _genericAttributeRepository = genericAttributeRepository;

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Localization;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Configuration;
 using Nop.Services.Stores;
 
@@ -18,7 +19,7 @@ namespace Nop.Services.Localization
     {
         #region Fields
 
-        private readonly IRepository<Language> _languageRepository;
+        private readonly IRepository<Language, MerchantDB> _languageRepository;
         private readonly ISettingService _settingService;
         private readonly IStaticCacheManager _staticCacheManager;
         private readonly IStoreMappingService _storeMappingService;
@@ -28,7 +29,7 @@ namespace Nop.Services.Localization
 
         #region Ctor
 
-        public LanguageService(IRepository<Language> languageRepository,
+        public LanguageService(IRepository<Language, MerchantDB> languageRepository,
             ISettingService settingService,
             IStaticCacheManager staticCacheManager,
             IStoreMappingService storeMappingService,

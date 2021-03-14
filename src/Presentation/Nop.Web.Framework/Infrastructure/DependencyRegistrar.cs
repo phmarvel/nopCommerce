@@ -9,6 +9,7 @@ using Nop.Core.Events;
 using Nop.Core.Infrastructure;
 using Nop.Core.Infrastructure.DependencyManagement;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Affiliates;
 using Nop.Services.Authentication;
 using Nop.Services.Authentication.External;
@@ -78,12 +79,14 @@ namespace Nop.Web.Framework.Infrastructure
             services.AddScoped<IUserAgentHelper, UserAgentHelper>();
 
             //data layer
-            services.AddTransient<IDataProviderManager, DataProviderManager>();
+            services.AddTransient(typeof(IDataProviderManager<>),typeof(DataProviderManager<>));
             services.AddTransient(serviceProvider =>
-                serviceProvider.GetRequiredService<IDataProviderManager>().DataProvider);
+                serviceProvider.GetRequiredService<IDataProviderManager<MerchantDB>>().DataProvider);
+            services.AddTransient(serviceProvider =>
+               serviceProvider.GetRequiredService<IDataProviderManager<PlatformDB>>().DataProvider);
 
             //repositories
-            services.AddScoped(typeof(IRepository<>), typeof(EntityRepository<>));
+            services.AddScoped(typeof(IRepository<,>), typeof(EntityRepository<,>));
 
             //plugins
             services.AddScoped<IPluginService, PluginService>();

@@ -8,6 +8,7 @@ using Nop.Core.Caching;
 using Nop.Core.Domain.Localization;
 using Nop.Core.Domain.Seo;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Localization;
 
 namespace Nop.Services.Seo
@@ -23,7 +24,7 @@ namespace Nop.Services.Seo
         private static Dictionary<string, string> _seoCharacterTable;
 
         private readonly ILanguageService _languageService;
-        private readonly IRepository<UrlRecord> _urlRecordRepository;
+        private readonly IRepository<UrlRecord, MerchantDB> _urlRecordRepository;
         private readonly IStaticCacheManager _staticCacheManager;
         private readonly IWorkContext _workContext;
         private readonly LocalizationSettings _localizationSettings;
@@ -34,7 +35,7 @@ namespace Nop.Services.Seo
         #region Ctor
 
         public UrlRecordService(ILanguageService languageService,
-            IRepository<UrlRecord> urlRecordRepository,
+            IRepository<UrlRecord, MerchantDB> urlRecordRepository,
             IStaticCacheManager staticCacheManager,
             IWorkContext workContext,
             LocalizationSettings localizationSettings,

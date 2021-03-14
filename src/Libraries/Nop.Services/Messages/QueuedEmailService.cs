@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Nop.Core;
 using Nop.Core.Domain.Messages;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Data.Extensions;
 
 namespace Nop.Services.Messages
@@ -16,13 +17,13 @@ namespace Nop.Services.Messages
     {
         #region Fields
 
-        private readonly IRepository<QueuedEmail> _queuedEmailRepository;
+        private readonly IRepository<QueuedEmail, MerchantDB> _queuedEmailRepository;
 
         #endregion
 
         #region Ctor
 
-        public QueuedEmailService(IRepository<QueuedEmail> queuedEmailRepository)
+        public QueuedEmailService(IRepository<QueuedEmail, MerchantDB> queuedEmailRepository)
         {
             _queuedEmailRepository = queuedEmailRepository;
         }

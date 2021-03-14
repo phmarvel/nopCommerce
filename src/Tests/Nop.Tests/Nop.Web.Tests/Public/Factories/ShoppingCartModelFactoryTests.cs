@@ -5,6 +5,7 @@ using FluentAssertions;
 using Nop.Core;
 using Nop.Core.Domain.Orders;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Catalog;
 using Nop.Services.Customers;
 using Nop.Services.Localization;
@@ -58,7 +59,7 @@ namespace Nop.Tests.Nop.Web.Tests.Public.Factories
                 ShoppingCartType = ShoppingCartType.Wishlist
             };
 
-            var shoppingCartRepo = GetService<IRepository<ShoppingCartItem>>();
+            var shoppingCartRepo = GetService<IRepository<ShoppingCartItem, MerchantDB>>();
 
             await shoppingCartRepo.InsertAsync(new List<ShoppingCartItem> {_shoppingCartItem, _wishlistItem});
 

@@ -6,6 +6,7 @@ using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Topics;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Customers;
 using Nop.Services.Security;
 using Nop.Services.Stores;
@@ -21,7 +22,7 @@ namespace Nop.Services.Topics
 
         private readonly IAclService _aclService;
         private readonly ICustomerService _customerService;
-        private readonly IRepository<Topic> _topicRepository;
+        private readonly IRepository<Topic, MerchantDB> _topicRepository;
         private readonly IStaticCacheManager _staticCacheManager;
         private readonly IStoreMappingService _storeMappingService;
         private readonly IWorkContext _workContext;
@@ -33,7 +34,7 @@ namespace Nop.Services.Topics
         public TopicService(
             IAclService aclService,
             ICustomerService customerService,
-            IRepository<Topic> topicRepository,
+            IRepository<Topic, MerchantDB> topicRepository,
             IStaticCacheManager staticCacheManager,
             IStoreMappingService storeMappingService,
             IWorkContext workContext)

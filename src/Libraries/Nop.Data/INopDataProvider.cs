@@ -7,13 +7,14 @@ using LinqToDB;
 using LinqToDB.Data;
 using LinqToDB.Mapping;
 using Nop.Core;
+using Nop.Data.DataBase;
 
 namespace Nop.Data
 {
     /// <summary>
     /// Represents a data provider
     /// </summary>
-    public partial interface INopDataProvider
+    public partial interface INopDataProvider<DB> where DB: IDBType
     {
         #region Methods
 

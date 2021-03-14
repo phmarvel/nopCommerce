@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Nop.Core;
 using Nop.Core.Domain.Polls;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Stores;
 
 namespace Nop.Services.Polls
@@ -15,9 +16,9 @@ namespace Nop.Services.Polls
     {
         #region Fields
 
-        private readonly IRepository<Poll> _pollRepository;
-        private readonly IRepository<PollAnswer> _pollAnswerRepository;
-        private readonly IRepository<PollVotingRecord> _pollVotingRecordRepository;
+        private readonly IRepository<Poll, MerchantDB> _pollRepository;
+        private readonly IRepository<PollAnswer, MerchantDB> _pollAnswerRepository;
+        private readonly IRepository<PollVotingRecord, MerchantDB> _pollVotingRecordRepository;
         private readonly IStoreMappingService _storeMappingService;
 
         #endregion
@@ -25,9 +26,9 @@ namespace Nop.Services.Polls
         #region Ctor
 
         public PollService(
-            IRepository<Poll> pollRepository,
-            IRepository<PollAnswer> pollAnswerRepository,
-            IRepository<PollVotingRecord> pollVotingRecordRepository,
+            IRepository<Poll, MerchantDB> pollRepository,
+            IRepository<PollAnswer, MerchantDB> pollAnswerRepository,
+            IRepository<PollVotingRecord, MerchantDB> pollVotingRecordRepository,
             IStoreMappingService storeMappingService)
         {
             _pollRepository = pollRepository;

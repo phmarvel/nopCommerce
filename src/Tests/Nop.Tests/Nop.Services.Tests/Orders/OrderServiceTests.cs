@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Nop.Core.Domain.Orders;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Orders;
 using NUnit.Framework;
 
@@ -76,7 +77,7 @@ namespace Nop.Tests.Nop.Services.Tests.Orders {
             await _orderService.DeleteOrderAsync(order);
 
             order.Deleted.Should().BeTrue();
-            order = await GetService<IRepository<Order>>().GetByIdAsync(1);
+            order = await GetService<IRepository<Order, MerchantDB>>().GetByIdAsync(1);
             order.Should().NotBeNull();
             order.Deleted = false;
             await _orderService.UpdateOrderAsync(order);
@@ -100,7 +101,7 @@ namespace Nop.Tests.Nop.Services.Tests.Orders {
 
             await _orderService.InsertOrderAsync(order);
             order.Id.Should().BeGreaterThan(0);
-            await GetService<IRepository<Order>>().DeleteAsync(order);
+            await GetService<IRepository<Order, MerchantDB>>().DeleteAsync(order);
         }
 
         [Test]

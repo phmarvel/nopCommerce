@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Nop.Core;
 using Nop.Core.Domain.Directory;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Stores;
 
 namespace Nop.Services.Directory
@@ -18,7 +19,7 @@ namespace Nop.Services.Directory
 
         private readonly CurrencySettings _currencySettings;
         private readonly IExchangeRatePluginManager _exchangeRatePluginManager;
-        private readonly IRepository<Currency> _currencyRepository;
+        private readonly IRepository<Currency, MerchantDB> _currencyRepository;
         private readonly IStoreMappingService _storeMappingService;
 
         #endregion
@@ -27,7 +28,7 @@ namespace Nop.Services.Directory
 
         public CurrencyService(CurrencySettings currencySettings,
             IExchangeRatePluginManager exchangeRatePluginManager,
-            IRepository<Currency> currencyRepository,
+            IRepository<Currency, MerchantDB> currencyRepository,
             IStoreMappingService storeMappingService)
         {
             _currencySettings = currencySettings;

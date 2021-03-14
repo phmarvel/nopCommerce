@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Nop.Core.Domain.Catalog;
 using Nop.Data;
+using Nop.Data.DataBase;
 
 namespace Nop.Services.Catalog
 {
@@ -13,13 +14,13 @@ namespace Nop.Services.Catalog
     {
         #region Fields
 
-        private readonly IRepository<CategoryTemplate> _categoryTemplateRepository;
+        private readonly IRepository<CategoryTemplate, MerchantDB> _categoryTemplateRepository;
 
         #endregion
 
         #region Ctor
 
-        public CategoryTemplateService(IRepository<CategoryTemplate> categoryTemplateRepository)
+        public CategoryTemplateService(IRepository<CategoryTemplate, MerchantDB> categoryTemplateRepository)
         {
             _categoryTemplateRepository = categoryTemplateRepository;
         }

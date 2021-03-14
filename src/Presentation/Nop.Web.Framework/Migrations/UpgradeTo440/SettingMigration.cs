@@ -12,6 +12,7 @@ using Nop.Data.Migrations;
 using Nop.Services.Catalog;
 using Nop.Services.Configuration;
 using Nop.Services.Seo;
+using Nop.Data.DataBase;
 
 namespace Nop.Web.Framework.Migrations.UpgradeTo440
 {
@@ -26,7 +27,7 @@ namespace Nop.Web.Framework.Migrations.UpgradeTo440
                 return;
 
             //do not use DI, because it produces exception on the installation process
-            var settingRepository = EngineContext.Current.Resolve<IRepository<Setting>>();
+            var settingRepository = EngineContext.Current.Resolve<IRepository<Setting, MerchantDB>>();
             var settingService = EngineContext.Current.Resolve<ISettingService>();
 
             //#4904 External authentication errors logging

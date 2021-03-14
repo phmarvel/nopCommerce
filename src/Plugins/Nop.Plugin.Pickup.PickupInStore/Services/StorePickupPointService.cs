@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Plugin.Pickup.PickupInStore.Domain;
 
 namespace Nop.Plugin.Pickup.PickupInStore.Services
@@ -27,7 +28,7 @@ namespace Nop.Plugin.Pickup.PickupInStore.Services
 
         #region Fields
 
-        private readonly IRepository<StorePickupPoint> _storePickupPointRepository;
+        private readonly IRepository<StorePickupPoint, MerchantDB> _storePickupPointRepository;
         private readonly IStaticCacheManager _staticCacheManager;
 
         #endregion
@@ -39,7 +40,7 @@ namespace Nop.Plugin.Pickup.PickupInStore.Services
         /// </summary>
         /// <param name="storePickupPointRepository">Store pickup point repository</param>
         /// <param name="staticCacheManager">Cache manager</param>
-        public StorePickupPointService(IRepository<StorePickupPoint> storePickupPointRepository,
+        public StorePickupPointService(IRepository<StorePickupPoint, MerchantDB> storePickupPointRepository,
             IStaticCacheManager staticCacheManager)
         {
             _storePickupPointRepository = storePickupPointRepository;

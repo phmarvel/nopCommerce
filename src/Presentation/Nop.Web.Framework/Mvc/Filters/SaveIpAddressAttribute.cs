@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Nop.Core;
 using Nop.Core.Domain.Customers;
 using Nop.Data;
+using Nop.Data.DataBase;
 
 namespace Nop.Web.Framework.Mvc.Filters
 {
@@ -35,7 +36,7 @@ namespace Nop.Web.Framework.Mvc.Filters
             #region Fields
 
             private readonly CustomerSettings _customerSettings;
-            private readonly IRepository<Customer> _customerRepository;
+            private readonly IRepository<Customer, MerchantDB> _customerRepository;
             private readonly IWebHelper _webHelper;
             private readonly IWorkContext _workContext;
 
@@ -44,7 +45,7 @@ namespace Nop.Web.Framework.Mvc.Filters
             #region Ctor
 
             public SaveIpAddressFilter(CustomerSettings customerSettings,
-                IRepository<Customer> customerRepository,
+                IRepository<Customer, MerchantDB> customerRepository,
                 IWebHelper webHelper,
                 IWorkContext workContext)
             {

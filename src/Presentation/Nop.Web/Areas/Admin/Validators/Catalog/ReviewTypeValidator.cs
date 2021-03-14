@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Nop.Core.Domain.Catalog;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Localization;
 using Nop.Web.Areas.Admin.Models.Catalog;
 using Nop.Web.Framework.Validators;
@@ -12,12 +13,12 @@ namespace Nop.Web.Areas.Admin.Validators.Catalog
     /// </summary>
     public partial class ReviewTypeValidator : BaseNopValidator<ReviewTypeModel>
     {
-        public ReviewTypeValidator(ILocalizationService localizationService, INopDataProvider dataProvider)
+        public ReviewTypeValidator(ILocalizationService localizationService, INopDataProvider<MerchantDB> dataProvider)
         {
             RuleFor(x => x.Name).NotEmpty().WithMessageAwait(localizationService.GetResourceAsync("Admin.Settings.ReviewType.Fields.Name.Required"));
             RuleFor(x => x.Description).NotEmpty().WithMessageAwait(localizationService.GetResourceAsync("Admin.Settings.ReviewType.Fields.Description.Required"));
 
-            SetDatabaseValidationRules<ReviewType>(dataProvider);
+            SetDatabaseValidationRules<ReviewType, MerchantDB>(dataProvider);
         }
     }
 }

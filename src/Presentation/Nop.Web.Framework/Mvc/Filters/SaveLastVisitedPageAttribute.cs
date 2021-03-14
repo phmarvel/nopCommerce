@@ -8,6 +8,7 @@ using Nop.Core;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Common;
 
 namespace Nop.Web.Framework.Mvc.Filters
@@ -39,7 +40,7 @@ namespace Nop.Web.Framework.Mvc.Filters
 
             private readonly CustomerSettings _customerSettings;
             private readonly IGenericAttributeService _genericAttributeService;
-            private readonly IRepository<GenericAttribute> _genericAttributeRepository;
+            private readonly IRepository<GenericAttribute, MerchantDB> _genericAttributeRepository;
             private readonly IWebHelper _webHelper;
             private readonly IWorkContext _workContext;
 
@@ -49,7 +50,7 @@ namespace Nop.Web.Framework.Mvc.Filters
 
             public SaveLastVisitedPageFilter(CustomerSettings customerSettings,
                 IGenericAttributeService genericAttributeService,
-                IRepository<GenericAttribute> genericAttributeRepository,
+                IRepository<GenericAttribute, MerchantDB> genericAttributeRepository,
                 IWebHelper webHelper,
                 IWorkContext workContext)
             {

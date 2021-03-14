@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Nop.Core.Domain.Media;
 using Nop.Data;
+using Nop.Data.DataBase;
 
 namespace Nop.Services.Media
 {
@@ -15,13 +16,13 @@ namespace Nop.Services.Media
     {
         #region Fields
 
-        private readonly IRepository<Download> _downloadRepository;
+        private readonly IRepository<Download, MerchantDB> _downloadRepository;
 
         #endregion
 
         #region Ctor
 
-        public DownloadService(IRepository<Download> downloadRepository)
+        public DownloadService(IRepository<Download, MerchantDB> downloadRepository)
         {
             _downloadRepository = downloadRepository;
         }

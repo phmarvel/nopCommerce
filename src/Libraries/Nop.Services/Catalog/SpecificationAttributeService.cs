@@ -6,6 +6,7 @@ using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Catalog;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Security;
 using Nop.Services.Stores;
 
@@ -21,13 +22,13 @@ namespace Nop.Services.Catalog
         private readonly CatalogSettings _catalogSettings;
         private readonly IAclService _aclService;
         private readonly ICategoryService _categoryService;
-        private readonly IRepository<Product> _productRepository;
-        private readonly IRepository<ProductCategory> _productCategoryRepository;
-        private readonly IRepository<ProductManufacturer> _productManufacturerRepository;
-        private readonly IRepository<ProductSpecificationAttribute> _productSpecificationAttributeRepository;
-        private readonly IRepository<SpecificationAttribute> _specificationAttributeRepository;
-        private readonly IRepository<SpecificationAttributeOption> _specificationAttributeOptionRepository;
-        private readonly IRepository<SpecificationAttributeGroup> _specificationAttributeGroupRepository;
+        private readonly IRepository<Product, MerchantDB> _productRepository;
+        private readonly IRepository<ProductCategory, MerchantDB> _productCategoryRepository;
+        private readonly IRepository<ProductManufacturer, MerchantDB> _productManufacturerRepository;
+        private readonly IRepository<ProductSpecificationAttribute, MerchantDB> _productSpecificationAttributeRepository;
+        private readonly IRepository<SpecificationAttribute, MerchantDB> _specificationAttributeRepository;
+        private readonly IRepository<SpecificationAttributeOption, MerchantDB> _specificationAttributeOptionRepository;
+        private readonly IRepository<SpecificationAttributeGroup, MerchantDB> _specificationAttributeGroupRepository;
         private readonly IStoreContext _storeContext;
         private readonly IStoreMappingService _storeMappingService;
         private readonly IStaticCacheManager _staticCacheManager;
@@ -41,13 +42,13 @@ namespace Nop.Services.Catalog
             CatalogSettings catalogSettings,
             IAclService aclService,
             ICategoryService categoryService,
-            IRepository<Product> productRepository,
-            IRepository<ProductCategory> productCategoryRepository,
-            IRepository<ProductManufacturer> productManufacturerRepository,
-            IRepository<ProductSpecificationAttribute> productSpecificationAttributeRepository,
-            IRepository<SpecificationAttribute> specificationAttributeRepository,
-            IRepository<SpecificationAttributeOption> specificationAttributeOptionRepository,
-            IRepository<SpecificationAttributeGroup> specificationAttributeGroupRepository,
+            IRepository<Product, MerchantDB> productRepository,
+            IRepository<ProductCategory, MerchantDB> productCategoryRepository,
+            IRepository<ProductManufacturer, MerchantDB> productManufacturerRepository,
+            IRepository<ProductSpecificationAttribute, MerchantDB> productSpecificationAttributeRepository,
+            IRepository<SpecificationAttribute, MerchantDB> specificationAttributeRepository,
+            IRepository<SpecificationAttributeOption, MerchantDB> specificationAttributeOptionRepository,
+            IRepository<SpecificationAttributeGroup, MerchantDB> specificationAttributeGroupRepository,
             IStoreContext storeContext,
             IStoreMappingService storeMappingService,
             IStaticCacheManager staticCacheManager,

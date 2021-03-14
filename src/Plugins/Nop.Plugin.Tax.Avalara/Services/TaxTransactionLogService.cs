@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Nop.Core;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Data.Extensions;
 using Nop.Plugin.Tax.Avalara.Domain;
 
@@ -15,13 +16,13 @@ namespace Nop.Plugin.Tax.Avalara.Services
     {
         #region Fields
 
-        private readonly IRepository<TaxTransactionLog> _taxTransactionLogRepository;
+        private readonly IRepository<TaxTransactionLog, MerchantDB> _taxTransactionLogRepository;
 
         #endregion
 
         #region Ctor
 
-        public TaxTransactionLogService(IRepository<TaxTransactionLog> taxTransactionLogRepository)
+        public TaxTransactionLogService(IRepository<TaxTransactionLog, MerchantDB> taxTransactionLogRepository)
         {
             _taxTransactionLogRepository = taxTransactionLogRepository;
         }

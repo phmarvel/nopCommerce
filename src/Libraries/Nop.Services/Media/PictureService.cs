@@ -10,6 +10,7 @@ using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Media;
 using Nop.Core.Infrastructure;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Catalog;
 using Nop.Services.Configuration;
 using Nop.Services.Seo;
@@ -24,14 +25,14 @@ namespace Nop.Services.Media
     {
         #region Fields
 
-        private readonly INopDataProvider _dataProvider;
+        private readonly INopDataProvider<MerchantDB> _dataProvider;
         private readonly IDownloadService _downloadService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly INopFileProvider _fileProvider;
         private readonly IProductAttributeParser _productAttributeParser;
-        private readonly IRepository<Picture> _pictureRepository;
-        private readonly IRepository<PictureBinary> _pictureBinaryRepository;
-        private readonly IRepository<ProductPicture> _productPictureRepository;
+        private readonly IRepository<Picture, MerchantDB> _pictureRepository;
+        private readonly IRepository<PictureBinary, MerchantDB> _pictureBinaryRepository;
+        private readonly IRepository<ProductPicture, MerchantDB> _productPictureRepository;
         private readonly ISettingService _settingService;
         private readonly IUrlRecordService _urlRecordService;
         private readonly IWebHelper _webHelper;
@@ -41,14 +42,14 @@ namespace Nop.Services.Media
 
         #region Ctor
 
-        public PictureService(INopDataProvider dataProvider,
+        public PictureService(INopDataProvider<MerchantDB> dataProvider,
             IDownloadService downloadService,
             IHttpContextAccessor httpContextAccessor,
             INopFileProvider fileProvider,
             IProductAttributeParser productAttributeParser,
-            IRepository<Picture> pictureRepository,
-            IRepository<PictureBinary> pictureBinaryRepository,
-            IRepository<ProductPicture> productPictureRepository,
+            IRepository<Picture, MerchantDB> pictureRepository,
+            IRepository<PictureBinary, MerchantDB> pictureBinaryRepository,
+            IRepository<ProductPicture, MerchantDB> productPictureRepository,
             ISettingService settingService,
             IUrlRecordService urlRecordService,
             IWebHelper webHelper,

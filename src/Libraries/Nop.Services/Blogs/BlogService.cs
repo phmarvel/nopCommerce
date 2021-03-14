@@ -6,6 +6,7 @@ using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Blogs;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Stores;
 
 namespace Nop.Services.Blogs
@@ -17,8 +18,8 @@ namespace Nop.Services.Blogs
     {
         #region Fields
 
-        private readonly IRepository<BlogComment> _blogCommentRepository;
-        private readonly IRepository<BlogPost> _blogPostRepository;
+        private readonly IRepository<BlogComment, MerchantDB> _blogCommentRepository;
+        private readonly IRepository<BlogPost, MerchantDB> _blogPostRepository;
         private readonly IStaticCacheManager _staticCacheManager;
         private readonly IStoreMappingService _storeMappingService;
 
@@ -27,8 +28,8 @@ namespace Nop.Services.Blogs
         #region Ctor
 
         public BlogService(
-            IRepository<BlogComment> blogCommentRepository,
-            IRepository<BlogPost> blogPostRepository,
+            IRepository<BlogComment, MerchantDB> blogCommentRepository,
+            IRepository<BlogPost, MerchantDB> blogPostRepository,
             IStaticCacheManager staticCacheManager,
             IStoreMappingService storeMappingService)
         {

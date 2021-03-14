@@ -13,6 +13,7 @@ using Nop.Core.Configuration;
 using Nop.Core.Domain.Localization;
 using Nop.Core.Domain.Security;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Configuration;
 using Nop.Services.ExportImport;
 using Nop.Services.Logging;
@@ -30,7 +31,7 @@ namespace Nop.Services.Localization
         private readonly ILanguageService _languageService;
         private readonly ILocalizedEntityService _localizedEntityService;
         private readonly ILogger _logger;
-        private readonly IRepository<LocaleStringResource> _lsrRepository;
+        private readonly IRepository<LocaleStringResource, MerchantDB> _lsrRepository;
         private readonly ISettingService _settingService;
         private readonly IStaticCacheManager _staticCacheManager;
         private readonly IWorkContext _workContext;
@@ -43,7 +44,7 @@ namespace Nop.Services.Localization
         public LocalizationService(ILanguageService languageService,
             ILocalizedEntityService localizedEntityService,
             ILogger logger,
-            IRepository<LocaleStringResource> lsrRepository,
+            IRepository<LocaleStringResource, MerchantDB> lsrRepository,
             ISettingService settingService,
             IStaticCacheManager staticCacheManager,
             IWorkContext workContext,

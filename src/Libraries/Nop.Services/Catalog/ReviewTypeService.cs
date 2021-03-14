@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Catalog;
 using Nop.Data;
+using Nop.Data.DataBase;
 
 namespace Nop.Services.Catalog
 {
@@ -14,16 +15,16 @@ namespace Nop.Services.Catalog
     {
         #region Fields
 
-        private readonly IRepository<ProductReviewReviewTypeMapping> _productReviewReviewTypeMappingRepository;
-        private readonly IRepository<ReviewType> _reviewTypeRepository;
+        private readonly IRepository<ProductReviewReviewTypeMapping, MerchantDB> _productReviewReviewTypeMappingRepository;
+        private readonly IRepository<ReviewType, MerchantDB> _reviewTypeRepository;
         private readonly IStaticCacheManager _staticCacheManager;
 
         #endregion
 
         #region Ctor
 
-        public ReviewTypeService(IRepository<ProductReviewReviewTypeMapping> productReviewReviewTypeMappingRepository,
-            IRepository<ReviewType> reviewTypeRepository,
+        public ReviewTypeService(IRepository<ProductReviewReviewTypeMapping, MerchantDB> productReviewReviewTypeMappingRepository,
+            IRepository<ReviewType, MerchantDB> reviewTypeRepository,
             IStaticCacheManager staticCacheManager)
         {
             _productReviewReviewTypeMappingRepository = productReviewReviewTypeMappingRepository;

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Nop.Core;
 using Nop.Core.Domain.Orders;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Data.Extensions;
 
 namespace Nop.Services.Orders
@@ -16,17 +17,17 @@ namespace Nop.Services.Orders
     {
         #region Fields
 
-        private readonly IRepository<ReturnRequest> _returnRequestRepository;
-        private readonly IRepository<ReturnRequestAction> _returnRequestActionRepository;
-        private readonly IRepository<ReturnRequestReason> _returnRequestReasonRepository;
+        private readonly IRepository<ReturnRequest, MerchantDB> _returnRequestRepository;
+        private readonly IRepository<ReturnRequestAction, MerchantDB> _returnRequestActionRepository;
+        private readonly IRepository<ReturnRequestReason, MerchantDB> _returnRequestReasonRepository;
 
         #endregion
 
         #region Ctor
 
-        public ReturnRequestService(IRepository<ReturnRequest> returnRequestRepository,
-            IRepository<ReturnRequestAction> returnRequestActionRepository,
-            IRepository<ReturnRequestReason> returnRequestReasonRepository)
+        public ReturnRequestService(IRepository<ReturnRequest, MerchantDB> returnRequestRepository,
+            IRepository<ReturnRequestAction, MerchantDB> returnRequestActionRepository,
+            IRepository<ReturnRequestReason, MerchantDB> returnRequestReasonRepository)
         {
             _returnRequestRepository = returnRequestRepository;
             _returnRequestActionRepository = returnRequestActionRepository;

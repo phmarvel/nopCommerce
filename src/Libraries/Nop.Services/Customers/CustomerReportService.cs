@@ -7,6 +7,7 @@ using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Domain.Shipping;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Data.Extensions;
 using Nop.Services.Helpers;
 using Nop.Services.Orders;
@@ -22,8 +23,8 @@ namespace Nop.Services.Customers
 
         private readonly ICustomerService _customerService;
         private readonly IDateTimeHelper _dateTimeHelper;
-        private readonly IRepository<Customer> _customerRepository;
-        private readonly IRepository<Order> _orderRepository;
+        private readonly IRepository<Customer, MerchantDB> _customerRepository;
+        private readonly IRepository<Order, MerchantDB> _orderRepository;
 
         #endregion
 
@@ -31,8 +32,8 @@ namespace Nop.Services.Customers
 
         public CustomerReportService(ICustomerService customerService,
             IDateTimeHelper dateTimeHelper,
-            IRepository<Customer> customerRepository,
-            IRepository<Order> orderRepository)
+            IRepository<Customer, MerchantDB> customerRepository,
+            IRepository<Order, MerchantDB> orderRepository)
         {
             _customerService = customerService;
             _dateTimeHelper = dateTimeHelper;

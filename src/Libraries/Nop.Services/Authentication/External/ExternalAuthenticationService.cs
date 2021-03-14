@@ -8,6 +8,7 @@ using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Localization;
 using Nop.Core.Events;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Common;
 using Nop.Services.Customers;
 using Nop.Services.Localization;
@@ -30,7 +31,7 @@ namespace Nop.Services.Authentication.External
         private readonly IEventPublisher _eventPublisher;
         private readonly IGenericAttributeService _genericAttributeService;
         private readonly ILocalizationService _localizationService;
-        private readonly IRepository<ExternalAuthenticationRecord> _externalAuthenticationRecordRepository;
+        private readonly IRepository<ExternalAuthenticationRecord, MerchantDB> _externalAuthenticationRecordRepository;
         private readonly IStoreContext _storeContext;
         private readonly IWorkContext _workContext;
         private readonly IWorkflowMessageService _workflowMessageService;
@@ -48,7 +49,7 @@ namespace Nop.Services.Authentication.External
             IEventPublisher eventPublisher,
             IGenericAttributeService genericAttributeService,
             ILocalizationService localizationService,
-            IRepository<ExternalAuthenticationRecord> externalAuthenticationRecordRepository,
+            IRepository<ExternalAuthenticationRecord, MerchantDB> externalAuthenticationRecordRepository,
             IStoreContext storeContext,
             IWorkContext workContext,
             IWorkflowMessageService workflowMessageService,

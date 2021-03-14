@@ -16,6 +16,7 @@ using Nop.Core.Configuration;
 using Nop.Core.Domain.Common;
 using Nop.Core.Infrastructure;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Data.Migrations;
 using Nop.Services.Authentication;
 using Nop.Services.Common;
@@ -72,7 +73,7 @@ namespace Nop.Web.Framework.Infrastructure.Extensions
 
 #if DEBUG
                 //prevent save the update migrations into the DB during the developing process  
-                var versions = EngineContext.Current.Resolve<IRepository<MigrationVersionInfo>>();
+                var versions = EngineContext.Current.Resolve<IRepository<MigrationVersionInfo, MerchantDB>>();
                 versions.DeleteAsync(mvi => mvi.Description.StartsWith(string.Format(NopMigrationDefaults.UpdateMigrationDescriptionPrefix, NopVersion.FULL_VERSION)));
 #endif
             }

@@ -11,6 +11,7 @@ using Nop.Core.Caching;
 using Nop.Core.Configuration;
 using Nop.Core.Infrastructure;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Common;
 using Nop.Services.Installation;
 using Nop.Services.Plugins;
@@ -172,7 +173,7 @@ namespace Nop.Web.Controllers
 
             try
             {
-                var dataProvider = DataProviderManager.GetDataProvider(model.DataProvider);
+                var dataProvider = DataProviderManager<MerchantDB>.GetDataProvider(model.DataProvider);
 
                 var connectionString = model.ConnectionStringRaw ? model.ConnectionString : dataProvider.BuildConnectionString(model);
 

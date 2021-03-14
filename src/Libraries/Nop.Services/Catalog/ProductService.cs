@@ -13,6 +13,7 @@ using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Infrastructure;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Customers;
 using Nop.Services.Localization;
 using Nop.Services.Messages;
@@ -38,26 +39,26 @@ namespace Nop.Services.Catalog
         protected readonly ILocalizationService _localizationService;
         protected readonly IProductAttributeParser _productAttributeParser;
         protected readonly IProductAttributeService _productAttributeService;
-        protected readonly IRepository<CrossSellProduct> _crossSellProductRepository;
-        protected readonly IRepository<DiscountProductMapping> _discountProductMappingRepository;
-        protected readonly IRepository<LocalizedProperty> _localizedPropertyRepository;
-        protected readonly IRepository<Product> _productRepository;
-        protected readonly IRepository<ProductAttributeCombination> _productAttributeCombinationRepository;
-        protected readonly IRepository<ProductAttributeMapping> _productAttributeMappingRepository;
-        protected readonly IRepository<ProductCategory> _productCategoryRepository;
-        protected readonly IRepository<ProductManufacturer> _productManufacturerRepository;
-        protected readonly IRepository<ProductPicture> _productPictureRepository;
-        protected readonly IRepository<ProductProductTagMapping> _productTagMappingRepository;
-        protected readonly IRepository<ProductReview> _productReviewRepository;
-        protected readonly IRepository<ProductReviewHelpfulness> _productReviewHelpfulnessRepository;
-        protected readonly IRepository<ProductSpecificationAttribute> _productSpecificationAttributeRepository;
-        protected readonly IRepository<ProductTag> _productTagRepository;
-        protected readonly IRepository<ProductWarehouseInventory> _productWarehouseInventoryRepository;
-        protected readonly IRepository<RelatedProduct> _relatedProductRepository;
-        protected readonly IRepository<Shipment> _shipmentRepository;
-        protected readonly IRepository<StockQuantityHistory> _stockQuantityHistoryRepository;
-        protected readonly IRepository<TierPrice> _tierPriceRepository;
-        protected readonly IRepository<Warehouse> _warehouseRepository;
+        protected readonly IRepository<CrossSellProduct, MerchantDB> _crossSellProductRepository;
+        protected readonly IRepository<DiscountProductMapping, MerchantDB> _discountProductMappingRepository;
+        protected readonly IRepository<LocalizedProperty, MerchantDB> _localizedPropertyRepository;
+        protected readonly IRepository<Product, MerchantDB> _productRepository;
+        protected readonly IRepository<ProductAttributeCombination, MerchantDB> _productAttributeCombinationRepository;
+        protected readonly IRepository<ProductAttributeMapping, MerchantDB> _productAttributeMappingRepository;
+        protected readonly IRepository<ProductCategory, MerchantDB> _productCategoryRepository;
+        protected readonly IRepository<ProductManufacturer, MerchantDB> _productManufacturerRepository;
+        protected readonly IRepository<ProductPicture, MerchantDB> _productPictureRepository;
+        protected readonly IRepository<ProductProductTagMapping, MerchantDB> _productTagMappingRepository;
+        protected readonly IRepository<ProductReview, MerchantDB> _productReviewRepository;
+        protected readonly IRepository<ProductReviewHelpfulness, MerchantDB> _productReviewHelpfulnessRepository;
+        protected readonly IRepository<ProductSpecificationAttribute, MerchantDB> _productSpecificationAttributeRepository;
+        protected readonly IRepository<ProductTag, MerchantDB> _productTagRepository;
+        protected readonly IRepository<ProductWarehouseInventory, MerchantDB> _productWarehouseInventoryRepository;
+        protected readonly IRepository<RelatedProduct, MerchantDB> _relatedProductRepository;
+        protected readonly IRepository<Shipment, MerchantDB> _shipmentRepository;
+        protected readonly IRepository<StockQuantityHistory, MerchantDB> _stockQuantityHistoryRepository;
+        protected readonly IRepository<TierPrice, MerchantDB> _tierPriceRepository;
+        protected readonly IRepository<Warehouse, MerchantDB> _warehouseRepository;
         protected readonly IStaticCacheManager _staticCacheManager;
         protected readonly IStoreMappingService _storeMappingService;
         protected readonly IStoreService _storeService;
@@ -77,26 +78,26 @@ namespace Nop.Services.Catalog
             ILocalizationService localizationService,
             IProductAttributeParser productAttributeParser,
             IProductAttributeService productAttributeService,
-            IRepository<CrossSellProduct> crossSellProductRepository,
-            IRepository<DiscountProductMapping> discountProductMappingRepository,
-            IRepository<LocalizedProperty> localizedPropertyRepository,
-            IRepository<Product> productRepository,
-            IRepository<ProductAttributeCombination> productAttributeCombinationRepository,
-            IRepository<ProductAttributeMapping> productAttributeMappingRepository,
-            IRepository<ProductCategory> productCategoryRepository,
-            IRepository<ProductManufacturer> productManufacturerRepository,
-            IRepository<ProductPicture> productPictureRepository,
-            IRepository<ProductProductTagMapping> productTagMappingRepository,
-            IRepository<ProductReview> productReviewRepository,
-            IRepository<ProductReviewHelpfulness> productReviewHelpfulnessRepository,
-            IRepository<ProductSpecificationAttribute> productSpecificationAttributeRepository,
-            IRepository<ProductTag> productTagRepository,
-            IRepository<ProductWarehouseInventory> productWarehouseInventoryRepository,
-            IRepository<RelatedProduct> relatedProductRepository,
-            IRepository<Shipment> shipmentRepository,
-            IRepository<StockQuantityHistory> stockQuantityHistoryRepository,
-            IRepository<TierPrice> tierPriceRepository,
-            IRepository<Warehouse> warehouseRepository,
+            IRepository<CrossSellProduct, MerchantDB> crossSellProductRepository,
+            IRepository<DiscountProductMapping, MerchantDB> discountProductMappingRepository,
+            IRepository<LocalizedProperty, MerchantDB> localizedPropertyRepository,
+            IRepository<Product, MerchantDB> productRepository,
+            IRepository<ProductAttributeCombination, MerchantDB> productAttributeCombinationRepository,
+            IRepository<ProductAttributeMapping, MerchantDB> productAttributeMappingRepository,
+            IRepository<ProductCategory, MerchantDB> productCategoryRepository,
+            IRepository<ProductManufacturer, MerchantDB> productManufacturerRepository,
+            IRepository<ProductPicture, MerchantDB> productPictureRepository,
+            IRepository<ProductProductTagMapping, MerchantDB> productTagMappingRepository,
+            IRepository<ProductReview, MerchantDB> productReviewRepository,
+            IRepository<ProductReviewHelpfulness, MerchantDB> productReviewHelpfulnessRepository,
+            IRepository<ProductSpecificationAttribute, MerchantDB> productSpecificationAttributeRepository,
+            IRepository<ProductTag, MerchantDB> productTagRepository,
+            IRepository<ProductWarehouseInventory, MerchantDB> productWarehouseInventoryRepository,
+            IRepository<RelatedProduct, MerchantDB> relatedProductRepository,
+            IRepository<Shipment, MerchantDB> shipmentRepository,
+            IRepository<StockQuantityHistory, MerchantDB> stockQuantityHistoryRepository,
+            IRepository<TierPrice, MerchantDB> tierPriceRepository,
+            IRepository<Warehouse, MerchantDB> warehouseRepository,
             IStaticCacheManager staticCacheManager,
             IStoreService storeService,
             IStoreMappingService storeMappingService,

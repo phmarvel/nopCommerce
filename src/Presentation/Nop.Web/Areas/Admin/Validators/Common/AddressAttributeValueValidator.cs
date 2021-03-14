@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Nop.Core.Domain.Common;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Localization;
 using Nop.Web.Areas.Admin.Models.Common;
 using Nop.Web.Framework.Validators;
@@ -9,11 +10,11 @@ namespace Nop.Web.Areas.Admin.Validators.Common
 {
     public partial class AddressAttributeValueValidator : BaseNopValidator<AddressAttributeValueModel>
     {
-        public AddressAttributeValueValidator(ILocalizationService localizationService, INopDataProvider dataProvider)
+        public AddressAttributeValueValidator(ILocalizationService localizationService, INopDataProvider<MerchantDB> dataProvider)
         {
             RuleFor(x => x.Name).NotEmpty().WithMessageAwait(localizationService.GetResourceAsync("Admin.Address.AddressAttributes.Values.Fields.Name.Required"));
 
-            SetDatabaseValidationRules<AddressAttributeValue>(dataProvider);
+            SetDatabaseValidationRules<AddressAttributeValue, MerchantDB>(dataProvider);
         }
     }
 }

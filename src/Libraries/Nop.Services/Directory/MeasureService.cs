@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Nop.Core;
 using Nop.Core.Domain.Directory;
 using Nop.Data;
+using Nop.Data.DataBase;
 
 namespace Nop.Services.Directory
 {
@@ -15,16 +16,16 @@ namespace Nop.Services.Directory
     {
         #region Fields
 
-        private readonly IRepository<MeasureDimension> _measureDimensionRepository;
-        private readonly IRepository<MeasureWeight> _measureWeightRepository;
+        private readonly IRepository<MeasureDimension, MerchantDB> _measureDimensionRepository;
+        private readonly IRepository<MeasureWeight, MerchantDB> _measureWeightRepository;
         private readonly MeasureSettings _measureSettings;
 
         #endregion
 
         #region Ctor
 
-        public MeasureService(IRepository<MeasureDimension> measureDimensionRepository,
-            IRepository<MeasureWeight> measureWeightRepository,
+        public MeasureService(IRepository<MeasureDimension, MerchantDB> measureDimensionRepository,
+            IRepository<MeasureWeight, MerchantDB> measureWeightRepository,
             MeasureSettings measureSettings)
         {
             _measureDimensionRepository = measureDimensionRepository;

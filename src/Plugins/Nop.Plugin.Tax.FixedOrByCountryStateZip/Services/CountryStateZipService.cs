@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Nop.Core;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Plugin.Tax.FixedOrByCountryStateZip.Domain;
 using Nop.Plugin.Tax.FixedOrByCountryStateZip.Infrastructure.Cache;
 
@@ -14,13 +15,13 @@ namespace Nop.Plugin.Tax.FixedOrByCountryStateZip.Services
     {
         #region Fields
 
-        private readonly IRepository<TaxRate> _taxRateRepository;
+        private readonly IRepository<TaxRate, MerchantDB> _taxRateRepository;
 
         #endregion
 
         #region Ctor
 
-        public CountryStateZipService(IRepository<TaxRate> taxRateRepository)
+        public CountryStateZipService(IRepository<TaxRate, MerchantDB> taxRateRepository)
         {
             _taxRateRepository = taxRateRepository;
         }

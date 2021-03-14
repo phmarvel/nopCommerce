@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Customers;
 using Nop.Data;
+using Nop.Data.DataBase;
 
 namespace Nop.Services.Customers
 {
@@ -14,16 +15,16 @@ namespace Nop.Services.Customers
     {
         #region Fields
 
-        private readonly IRepository<CustomerAttribute> _customerAttributeRepository;
-        private readonly IRepository<CustomerAttributeValue> _customerAttributeValueRepository;
+        private readonly IRepository<CustomerAttribute, MerchantDB> _customerAttributeRepository;
+        private readonly IRepository<CustomerAttributeValue, MerchantDB> _customerAttributeValueRepository;
         private readonly IStaticCacheManager _staticCacheManager;
 
         #endregion
 
         #region Ctor
 
-        public CustomerAttributeService(IRepository<CustomerAttribute> customerAttributeRepository,
-            IRepository<CustomerAttributeValue> customerAttributeValueRepository,
+        public CustomerAttributeService(IRepository<CustomerAttribute, MerchantDB> customerAttributeRepository,
+            IRepository<CustomerAttributeValue, MerchantDB> customerAttributeValueRepository,
             IStaticCacheManager staticCacheManager)
         {
             _customerAttributeRepository = customerAttributeRepository;

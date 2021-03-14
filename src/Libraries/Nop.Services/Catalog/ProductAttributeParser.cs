@@ -10,6 +10,7 @@ using Microsoft.Extensions.Primitives;
 using Nop.Core;
 using Nop.Core.Domain.Catalog;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Directory;
 using Nop.Services.Localization;
 using Nop.Services.Media;
@@ -28,7 +29,7 @@ namespace Nop.Services.Catalog
         private readonly IDownloadService _downloadService;
         private readonly ILocalizationService _localizationService;
         private readonly IProductAttributeService _productAttributeService;
-        private readonly IRepository<ProductAttributeValue> _productAttributeValueRepository;
+        private readonly IRepository<ProductAttributeValue, MerchantDB> _productAttributeValueRepository;
         private readonly IWorkContext _workContext;
 
         #endregion
@@ -39,7 +40,7 @@ namespace Nop.Services.Catalog
             IDownloadService downloadService,
             ILocalizationService localizationService,
             IProductAttributeService productAttributeService,
-            IRepository<ProductAttributeValue> productAttributeValueRepository,
+            IRepository<ProductAttributeValue, MerchantDB> productAttributeValueRepository,
             IWorkContext workContext)
         {
             _currencyService = currencyService;

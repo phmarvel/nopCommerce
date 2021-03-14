@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Orders;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Stores;
 
 namespace Nop.Services.Orders
@@ -17,8 +18,8 @@ namespace Nop.Services.Orders
         #region Fields
 
         private readonly IStaticCacheManager _staticCacheManager;
-        private readonly IRepository<CheckoutAttribute> _checkoutAttributeRepository;
-        private readonly IRepository<CheckoutAttributeValue> _checkoutAttributeValueRepository;
+        private readonly IRepository<CheckoutAttribute, MerchantDB> _checkoutAttributeRepository;
+        private readonly IRepository<CheckoutAttributeValue, MerchantDB> _checkoutAttributeValueRepository;
         private readonly IStoreMappingService _storeMappingService;
 
         #endregion
@@ -26,8 +27,8 @@ namespace Nop.Services.Orders
         #region Ctor
 
         public CheckoutAttributeService(IStaticCacheManager staticCacheManager,
-            IRepository<CheckoutAttribute> checkoutAttributeRepository,
-            IRepository<CheckoutAttributeValue> checkoutAttributeValueRepository,
+            IRepository<CheckoutAttribute, MerchantDB> checkoutAttributeRepository,
+            IRepository<CheckoutAttributeValue, MerchantDB> checkoutAttributeValueRepository,
             IStoreMappingService storeMappingService)
         {
             _staticCacheManager = staticCacheManager;

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Nop.Core.Domain.Topics;
 using Nop.Data;
+using Nop.Data.DataBase;
 
 namespace Nop.Services.Topics
 {
@@ -13,13 +14,13 @@ namespace Nop.Services.Topics
     {
         #region Fields
 
-        private readonly IRepository<TopicTemplate> _topicTemplateRepository;
+        private readonly IRepository<TopicTemplate, MerchantDB> _topicTemplateRepository;
 
         #endregion
 
         #region Ctor
 
-        public TopicTemplateService(IRepository<TopicTemplate> topicTemplateRepository)
+        public TopicTemplateService(IRepository<TopicTemplate, MerchantDB> topicTemplateRepository)
         {
             _topicTemplateRepository = topicTemplateRepository;
         }

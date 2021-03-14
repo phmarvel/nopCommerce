@@ -11,6 +11,7 @@ using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Domain.Shipping;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Catalog;
 using Nop.Services.Directory;
 using Nop.Services.Helpers;
@@ -29,14 +30,14 @@ namespace Nop.Services.Orders
         private readonly ICurrencyService _currencyService;
         private readonly IDateTimeHelper _dateTimeHelper;
         private readonly IPriceFormatter _priceFormatter;
-        private readonly IRepository<Address> _addressRepository;
-        private readonly IRepository<Order> _orderRepository;
-        private readonly IRepository<OrderItem> _orderItemRepository;
-        private readonly IRepository<OrderNote> _orderNoteRepository;
-        private readonly IRepository<Product> _productRepository;
-        private readonly IRepository<ProductCategory> _productCategoryRepository;
-        private readonly IRepository<ProductManufacturer> _productManufacturerRepository;
-        private readonly IRepository<ProductWarehouseInventory> _productWarehouseInventoryRepository;
+        private readonly IRepository<Address, MerchantDB> _addressRepository;
+        private readonly IRepository<Order, MerchantDB> _orderRepository;
+        private readonly IRepository<OrderItem, MerchantDB> _orderItemRepository;
+        private readonly IRepository<OrderNote, MerchantDB> _orderNoteRepository;
+        private readonly IRepository<Product, MerchantDB> _productRepository;
+        private readonly IRepository<ProductCategory, MerchantDB> _productCategoryRepository;
+        private readonly IRepository<ProductManufacturer, MerchantDB> _productManufacturerRepository;
+        private readonly IRepository<ProductWarehouseInventory, MerchantDB> _productWarehouseInventoryRepository;
         private readonly IStoreMappingService _storeMappingService;
         private readonly IWorkContext _workContext;
 
@@ -49,14 +50,14 @@ namespace Nop.Services.Orders
             ICurrencyService currencyService,
             IDateTimeHelper dateTimeHelper,
             IPriceFormatter priceFormatter,
-            IRepository<Address> addressRepository,
-            IRepository<Order> orderRepository,
-            IRepository<OrderItem> orderItemRepository,
-            IRepository<OrderNote> orderNoteRepository,
-            IRepository<Product> productRepository,
-            IRepository<ProductCategory> productCategoryRepository,
-            IRepository<ProductManufacturer> productManufacturerRepository,
-            IRepository<ProductWarehouseInventory> productWarehouseInventoryRepository,
+            IRepository<Address, MerchantDB> addressRepository,
+            IRepository<Order, MerchantDB> orderRepository,
+            IRepository<OrderItem, MerchantDB> orderItemRepository,
+            IRepository<OrderNote, MerchantDB> orderNoteRepository,
+            IRepository<Product, MerchantDB> productRepository,
+            IRepository<ProductCategory, MerchantDB> productCategoryRepository,
+            IRepository<ProductManufacturer, MerchantDB> productManufacturerRepository,
+            IRepository<ProductWarehouseInventory, MerchantDB> productWarehouseInventoryRepository,
             IStoreMappingService storeMappingService,
             IWorkContext workContext)
         {

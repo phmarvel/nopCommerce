@@ -12,6 +12,7 @@ using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Html;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Data.Extensions;
 using Nop.Services.Catalog;
 using Nop.Services.Shipping;
@@ -26,15 +27,15 @@ namespace Nop.Services.Orders
         #region Fields
 
         private readonly IProductService _productService;
-        private readonly IRepository<Address> _addressRepository;
-        private readonly IRepository<Customer> _customerRepository;
-        private readonly IRepository<Order> _orderRepository;
-        private readonly IRepository<OrderItem> _orderItemRepository;
-        private readonly IRepository<OrderNote> _orderNoteRepository;
-        private readonly IRepository<Product> _productRepository;
-        private readonly IRepository<ProductWarehouseInventory> _productWarehouseInventoryRepository;
-        private readonly IRepository<RecurringPayment> _recurringPaymentRepository;
-        private readonly IRepository<RecurringPaymentHistory> _recurringPaymentHistoryRepository;
+        private readonly IRepository<Address, MerchantDB> _addressRepository;
+        private readonly IRepository<Customer, MerchantDB> _customerRepository;
+        private readonly IRepository<Order, MerchantDB> _orderRepository;
+        private readonly IRepository<OrderItem, MerchantDB> _orderItemRepository;
+        private readonly IRepository<OrderNote, MerchantDB> _orderNoteRepository;
+        private readonly IRepository<Product, MerchantDB> _productRepository;
+        private readonly IRepository<ProductWarehouseInventory, MerchantDB> _productWarehouseInventoryRepository;
+        private readonly IRepository<RecurringPayment, MerchantDB> _recurringPaymentRepository;
+        private readonly IRepository<RecurringPaymentHistory, MerchantDB> _recurringPaymentHistoryRepository;
         private readonly IShipmentService _shipmentService;
 
         #endregion
@@ -42,15 +43,15 @@ namespace Nop.Services.Orders
         #region Ctor
 
         public OrderService(IProductService productService,
-            IRepository<Address> addressRepository,
-            IRepository<Customer> customerRepository,
-            IRepository<Order> orderRepository,
-            IRepository<OrderItem> orderItemRepository,
-            IRepository<OrderNote> orderNoteRepository,
-            IRepository<Product> productRepository,
-            IRepository<ProductWarehouseInventory> productWarehouseInventoryRepository,
-            IRepository<RecurringPayment> recurringPaymentRepository,
-            IRepository<RecurringPaymentHistory> recurringPaymentHistoryRepository,
+            IRepository<Address, MerchantDB> addressRepository,
+            IRepository<Customer, MerchantDB> customerRepository,
+            IRepository<Order, MerchantDB> orderRepository,
+            IRepository<OrderItem, MerchantDB> orderItemRepository,
+            IRepository<OrderNote, MerchantDB> orderNoteRepository,
+            IRepository<Product, MerchantDB> productRepository,
+            IRepository<ProductWarehouseInventory, MerchantDB> productWarehouseInventoryRepository,
+            IRepository<RecurringPayment, MerchantDB> recurringPaymentRepository,
+            IRepository<RecurringPaymentHistory, MerchantDB> recurringPaymentHistoryRepository,
             IShipmentService shipmentService)
         {
             _productService = productService;

@@ -27,6 +27,7 @@ using Nop.Core.Domain.Tax;
 using Nop.Core.Domain.Vendors;
 using Nop.Core.Infrastructure;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Authentication.MultiFactor;
 using Nop.Services.Common;
 using Nop.Services.Configuration;
@@ -61,7 +62,7 @@ namespace Nop.Web.Areas.Admin.Controllers
         private readonly IAddressService _addressService;
         private readonly ICustomerActivityService _customerActivityService;
         private readonly ICustomerService _customerService;
-        private readonly INopDataProvider _dataProvider;
+        private readonly INopDataProvider<MerchantDB> _dataProvider;
         private readonly IEncryptionService _encryptionService;
         private readonly IGenericAttributeService _genericAttributeService;
         private readonly IGdprService _gdprService;
@@ -90,7 +91,7 @@ namespace Nop.Web.Areas.Admin.Controllers
             IAddressService addressService,
             ICustomerActivityService customerActivityService,
             ICustomerService customerService,
-            INopDataProvider dataProvider,
+            INopDataProvider<MerchantDB> dataProvider,
             IEncryptionService encryptionService,
             IGenericAttributeService genericAttributeService,
             IGdprService gdprService,

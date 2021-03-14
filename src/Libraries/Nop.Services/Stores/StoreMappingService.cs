@@ -7,6 +7,7 @@ using Nop.Core.Caching;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Stores;
 using Nop.Data;
+using Nop.Data.DataBase;
 
 namespace Nop.Services.Stores
 {
@@ -18,7 +19,7 @@ namespace Nop.Services.Stores
         #region Fields
 
         private readonly CatalogSettings _catalogSettings;
-        private readonly IRepository<StoreMapping> _storeMappingRepository;
+        private readonly IRepository<StoreMapping, MerchantDB> _storeMappingRepository;
         private readonly IStaticCacheManager _staticCacheManager;
         private readonly IStoreContext _storeContext;
 
@@ -27,7 +28,7 @@ namespace Nop.Services.Stores
         #region Ctor
 
         public StoreMappingService(CatalogSettings catalogSettings,
-            IRepository<StoreMapping> storeMappingRepository,
+            IRepository<StoreMapping, MerchantDB> storeMappingRepository,
             IStaticCacheManager staticCacheManager,
             IStoreContext storeContext)
         {

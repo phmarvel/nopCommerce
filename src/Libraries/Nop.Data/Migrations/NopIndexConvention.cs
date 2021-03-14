@@ -2,23 +2,24 @@
 using FluentMigrator.Expressions;
 using FluentMigrator.Model;
 using FluentMigrator.Runner.Conventions;
+using Nop.Data.DataBase;
 
 namespace Nop.Data.Migrations
 {
     /// <summary>
     /// Convention for the default naming of an index
     /// </summary>
-    public class NopIndexConvention : IIndexConvention
+    public class NopIndexConvention<DBType> : IIndexConvention where DBType: IDBType
     {
         #region Fields
 
-        private readonly INopDataProvider _dataProvider;
+        private readonly INopDataProvider<DBType> _dataProvider;
 
         #endregion
 
         #region Ctor
 
-        public NopIndexConvention(INopDataProvider dataProvider)
+        public NopIndexConvention(INopDataProvider<DBType> dataProvider)
         {
             _dataProvider = dataProvider;
         }

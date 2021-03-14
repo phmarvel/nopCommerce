@@ -12,6 +12,7 @@ using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Media;
 using Nop.Core.Infrastructure;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Catalog;
 using Nop.Services.Configuration;
 using Nop.Services.Seo;
@@ -43,14 +44,14 @@ namespace Nop.Services.Media
         #region Ctor
 
         public AzurePictureService(AppSettings appSettings,
-            INopDataProvider dataProvider,
+            INopDataProvider<MerchantDB> dataProvider,
             IDownloadService downloadService,
             IHttpContextAccessor httpContextAccessor,
             INopFileProvider fileProvider,
             IProductAttributeParser productAttributeParser,
-            IRepository<Picture> pictureRepository,
-            IRepository<PictureBinary> pictureBinaryRepository,
-            IRepository<ProductPicture> productPictureRepository,
+            IRepository<Picture, MerchantDB> pictureRepository,
+            IRepository<PictureBinary, MerchantDB> pictureBinaryRepository,
+            IRepository<ProductPicture, MerchantDB> productPictureRepository,
             ISettingService settingService,
             IStaticCacheManager staticCacheManager,
             IUrlRecordService urlRecordService,

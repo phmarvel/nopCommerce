@@ -8,7 +8,7 @@ using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Localization;
 using Nop.Data;
-
+using Nop.Data.DataBase;
 
 namespace Nop.Services.Localization
 {
@@ -19,7 +19,7 @@ namespace Nop.Services.Localization
     {
         #region Fields
 
-        private readonly IRepository<LocalizedProperty> _localizedPropertyRepository;
+        private readonly IRepository<LocalizedProperty, MerchantDB> _localizedPropertyRepository;
         private readonly IStaticCacheManager _staticCacheManager;
         private readonly LocalizationSettings _localizationSettings;
 
@@ -27,7 +27,7 @@ namespace Nop.Services.Localization
 
         #region Ctor
 
-        public LocalizedEntityService(IRepository<LocalizedProperty> localizedPropertyRepository,
+        public LocalizedEntityService(IRepository<LocalizedProperty, MerchantDB> localizedPropertyRepository,
             IStaticCacheManager staticCacheManager,
             LocalizationSettings localizationSettings)
         {

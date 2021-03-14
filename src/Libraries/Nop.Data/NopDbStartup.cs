@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nop.Core.Infrastructure;
+using Nop.Data.DataBase;
 using Nop.Data.Migrations;
 
 namespace Nop.Data
@@ -37,7 +38,7 @@ namespace Nop.Data
                 // set accessor for the connection string
                 .AddScoped<IConnectionStringAccessor>(x => DataSettingsManager.LoadSettings())
                 .AddScoped<IMigrationManager, MigrationManager>()
-                .AddSingleton<IConventionSet, NopConventionSet>()
+                .AddSingleton<IConventionSet, NopConventionSet<MerchantDB>>()
                 .ConfigureRunner(rb =>
                     rb.WithVersionTable(new MigrationVersionInfo()).AddSqlServer().AddMySql5().AddPostgres()
                         // define the assembly containing the migrations

@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Nop.Core.Domain.Directory;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Localization;
 using Nop.Web.Areas.Admin.Models.Directory;
 using Nop.Web.Framework.Validators;
@@ -9,7 +10,7 @@ namespace Nop.Web.Areas.Admin.Validators.Directory
 {
     public partial class CountryValidator : BaseNopValidator<CountryModel>
     {
-        public CountryValidator(ILocalizationService localizationService, INopDataProvider dataProvider)
+        public CountryValidator(ILocalizationService localizationService, INopDataProvider<MerchantDB> dataProvider)
         {
             RuleFor(x => x.Name)
                 .NotEmpty()
@@ -30,7 +31,7 @@ namespace Nop.Web.Areas.Admin.Validators.Directory
                 .Length(3)
                 .WithMessageAwait(localizationService.GetResourceAsync("Admin.Configuration.Countries.Fields.ThreeLetterIsoCode.Length"));
 
-            SetDatabaseValidationRules<Country>(dataProvider);
+            SetDatabaseValidationRules<Country, MerchantDB>(dataProvider);
         }
     }
 }

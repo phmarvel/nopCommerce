@@ -6,6 +6,7 @@ using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Catalog;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Customers;
 using Nop.Services.Security;
 using Nop.Services.Seo;
@@ -22,9 +23,9 @@ namespace Nop.Services.Catalog
 
         private readonly IAclService _aclService;
         private readonly ICustomerService _customerService;
-        private readonly IRepository<Product> _productRepository;
-        private readonly IRepository<ProductProductTagMapping> _productProductTagMappingRepository;
-        private readonly IRepository<ProductTag> _productTagRepository;
+        private readonly IRepository<Product, MerchantDB> _productRepository;
+        private readonly IRepository<ProductProductTagMapping, MerchantDB> _productProductTagMappingRepository;
+        private readonly IRepository<ProductTag, MerchantDB> _productTagRepository;
         private readonly IStaticCacheManager _staticCacheManager;
         private readonly IStoreMappingService _storeMappingService;
         private readonly IUrlRecordService _urlRecordService;
@@ -37,9 +38,9 @@ namespace Nop.Services.Catalog
         public ProductTagService(
             IAclService aclService,
             ICustomerService customerService,
-            IRepository<Product> productRepository,
-            IRepository<ProductProductTagMapping> productProductTagMappingRepository,
-            IRepository<ProductTag> productTagRepository,
+            IRepository<Product, MerchantDB> productRepository,
+            IRepository<ProductProductTagMapping, MerchantDB> productProductTagMappingRepository,
+            IRepository<ProductTag, MerchantDB> productTagRepository,
             IStaticCacheManager staticCacheManager,
             IStoreMappingService storeMappingService,
             IUrlRecordService urlRecordService,

@@ -8,6 +8,7 @@ using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Stores;
 using Nop.Core.Infrastructure;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Common;
 using Nop.Services.Stores;
 
@@ -22,7 +23,7 @@ namespace Nop.Web.Framework
 
         private readonly IGenericAttributeService _genericAttributeService;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly IRepository<Store> _storeRepository;
+        private readonly IRepository<Store, MerchantDB> _storeRepository;
         private readonly IStoreService _storeService;
 
         private Store _cachedStore;
@@ -41,7 +42,7 @@ namespace Nop.Web.Framework
         /// <param name="storeService">Store service</param>
         public WebStoreContext(IGenericAttributeService genericAttributeService,
             IHttpContextAccessor httpContextAccessor,
-            IRepository<Store> storeRepository,
+            IRepository<Store, MerchantDB> storeRepository,
             IStoreService storeService)
         {
             _genericAttributeService = genericAttributeService;
@@ -89,8 +90,8 @@ namespace Nop.Web.Framework
             //try to determine the current store by HOST header
             string host = _httpContextAccessor.HttpContext?.Request.Headers[HeaderNames.Host];
 
-            var allStores = _storeRepository.Table.OrderBy(s => s.DisplayOrder).ThenBy(s => s.Id).ToList();
-            var store = allStores.FirstOrDefault(s => _storeService.ContainsHostValue(s, host));
+            var allStores = _storeRepository.Table.OrderBy(s => s.DisplayOrder).ThenBy(s => s.Id);
+            var store = allStores.Where(s=>s.Hosts.Contains(host??"")).FirstOrDefault();
 
             if (store == null)
                 //load the first found store

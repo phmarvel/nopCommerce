@@ -10,6 +10,7 @@ using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Tax;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Catalog;
 using Nop.Services.Common;
 using Nop.Services.Configuration;
@@ -148,10 +149,10 @@ namespace Nop.Tests.Nop.Services.Tests.Orders
 
             await GetService<IGenericAttributeService>().SaveAttributeAsync<string>(_customer, NopCustomerDefaults.SelectedPaymentMethodAttribute, null, 1);
             
-            foreach (var item in GetService<IRepository<Discount>>().Table.Where(d => d.Name == "Discount 1").ToList()) 
+            foreach (var item in GetService<IRepository<Discount, MerchantDB>>().Table.Where(d => d.Name == "Discount 1").ToList()) 
                 await _discountService.DeleteDiscountAsync(item);
 
-            await _productService.DeleteProductsAsync(GetService<IRepository<Product>>().Table.Where(p => p.Name == "Product name 1").ToList());
+            await _productService.DeleteProductsAsync(GetService<IRepository<Product, MerchantDB>>().Table.Where(p => p.Name == "Product name 1").ToList());
         }
 
         [Test]

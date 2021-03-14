@@ -8,6 +8,7 @@ using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Security;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Customers;
 
 namespace Nop.Services.Security
@@ -21,7 +22,7 @@ namespace Nop.Services.Security
 
         private readonly CatalogSettings _catalogSettings;
         private readonly ICustomerService _customerService;
-        private readonly IRepository<AclRecord> _aclRecordRepository;
+        private readonly IRepository<AclRecord, MerchantDB> _aclRecordRepository;
         private readonly IStaticCacheManager _staticCacheManager;
         private readonly IWorkContext _workContext;
 
@@ -31,7 +32,7 @@ namespace Nop.Services.Security
 
         public AclService(CatalogSettings catalogSettings,
             ICustomerService customerService,
-            IRepository<AclRecord> aclRecordRepository,
+            IRepository<AclRecord, MerchantDB> aclRecordRepository,
             IStaticCacheManager staticCacheManager,
             IWorkContext workContext)
         {

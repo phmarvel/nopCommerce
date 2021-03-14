@@ -6,6 +6,7 @@ using Nop.Core.Caching;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Directory;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Localization;
 using Nop.Services.Stores;
 
@@ -20,7 +21,7 @@ namespace Nop.Services.Directory
 
         private readonly IStaticCacheManager _staticCacheManager;
         private readonly ILocalizationService _localizationService;
-        private readonly IRepository<Country> _countryRepository;
+        private readonly IRepository<Country, MerchantDB> _countryRepository;
         private readonly IStoreContext _storeContext;
         private readonly IStoreMappingService _storeMappingService;
 
@@ -31,7 +32,7 @@ namespace Nop.Services.Directory
         public CountryService(
             IStaticCacheManager staticCacheManager,
             ILocalizationService localizationService,
-            IRepository<Country> countryRepository,
+            IRepository<Country, MerchantDB> countryRepository,
             IStoreContext storeContext,
             IStoreMappingService storeMappingService)
         {

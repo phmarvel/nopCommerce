@@ -11,6 +11,7 @@ using Nop.Core;
 using Nop.Core.Domain.Media;
 using Nop.Core.Infrastructure;
 using Nop.Data;
+using Nop.Data.DataBase;
 using SkiaSharp;
 
 namespace Nop.Services.Media.RoxyFileman
@@ -23,14 +24,14 @@ namespace Nop.Services.Media.RoxyFileman
         #region Fields
 
         private readonly IPictureService _pictureService;
-        private readonly IRepository<Picture> _pictureRepository;
+        private readonly IRepository<Picture, MerchantDB> _pictureRepository;
 
         #endregion
 
         #region Ctor
 
         public DatabaseRoxyFilemanService(IPictureService pictureService,
-            IRepository<Picture> pictureRepository,
+            IRepository<Picture, MerchantDB> pictureRepository,
             IWebHostEnvironment webHostEnvironment,
             IHttpContextAccessor httpContextAccessor,
             INopFileProvider fileProvider,

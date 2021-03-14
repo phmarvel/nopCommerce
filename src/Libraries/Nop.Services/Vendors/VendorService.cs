@@ -8,6 +8,7 @@ using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Vendors;
 using Nop.Core.Html;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Data.Extensions;
 
 namespace Nop.Services.Vendors
@@ -19,19 +20,19 @@ namespace Nop.Services.Vendors
     {
         #region Fields
 
-        private readonly IRepository<Customer> _customerRepository;
-        private readonly IRepository<Product> _productRepository;
-        private readonly IRepository<Vendor> _vendorRepository;
-        private readonly IRepository<VendorNote> _vendorNoteRepository;
+        private readonly IRepository<Customer, MerchantDB> _customerRepository;
+        private readonly IRepository<Product, MerchantDB> _productRepository;
+        private readonly IRepository<Vendor, MerchantDB> _vendorRepository;
+        private readonly IRepository<VendorNote, MerchantDB> _vendorNoteRepository;
 
         #endregion
 
         #region Ctor
 
-        public VendorService(IRepository<Customer> customerRepository,
-            IRepository<Product> productRepository,
-            IRepository<Vendor> vendorRepository,
-            IRepository<VendorNote> vendorNoteRepository)
+        public VendorService(IRepository<Customer, MerchantDB> customerRepository,
+            IRepository<Product, MerchantDB> productRepository,
+            IRepository<Vendor, MerchantDB> vendorRepository,
+            IRepository<VendorNote, MerchantDB> vendorNoteRepository)
         {
             _customerRepository = customerRepository;
             _productRepository = productRepository;

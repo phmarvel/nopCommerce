@@ -5,6 +5,7 @@ using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Logging;
 using Nop.Core.Domain.Security;
 using Nop.Core.Domain.Vendors;
+using Nop.Data.DataBase;
 using Nop.Data.Mapping;
 
 namespace Nop.Data.Migrations.UpgradeTo440
@@ -13,9 +14,9 @@ namespace Nop.Data.Migrations.UpgradeTo440
     [SkipMigrationOnInstall]
     public class DataMigration : Migration
     {
-        private readonly INopDataProvider _dataProvider;
+        private readonly INopDataProvider<MerchantDB> _dataProvider;
 
-        public DataMigration(INopDataProvider dataProvider)
+        public DataMigration(INopDataProvider<MerchantDB> dataProvider)
         {
             _dataProvider = dataProvider;
         }

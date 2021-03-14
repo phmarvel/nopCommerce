@@ -5,6 +5,7 @@ using Nop.Core.Caching;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Directory;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Localization;
 
 namespace Nop.Services.Directory
@@ -18,7 +19,7 @@ namespace Nop.Services.Directory
 
         private readonly IStaticCacheManager _staticCacheManager;
         private readonly ILocalizationService _localizationService;
-        private readonly IRepository<StateProvince> _stateProvinceRepository;
+        private readonly IRepository<StateProvince, MerchantDB> _stateProvinceRepository;
 
         #endregion
 
@@ -26,7 +27,7 @@ namespace Nop.Services.Directory
 
         public StateProvinceService(IStaticCacheManager staticCacheManager,
             ILocalizationService localizationService,
-            IRepository<StateProvince> stateProvinceRepository)
+            IRepository<StateProvince, MerchantDB> stateProvinceRepository)
         {
             _staticCacheManager = staticCacheManager;
             _localizationService = localizationService;

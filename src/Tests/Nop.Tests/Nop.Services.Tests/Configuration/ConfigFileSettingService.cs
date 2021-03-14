@@ -6,13 +6,14 @@ using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Configuration;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Configuration;
 
 namespace Nop.Tests.Nop.Services.Tests.Configuration
 {
     public class ConfigFileSettingService : SettingService
     {
-        public ConfigFileSettingService(IRepository<Setting> settingRepository, IStaticCacheManager staticCacheManager) : base(settingRepository, staticCacheManager)
+        public ConfigFileSettingService(IRepository<Setting, MerchantDB> settingRepository, IStaticCacheManager staticCacheManager) : base(settingRepository, staticCacheManager)
         {
         }
 

@@ -34,6 +34,7 @@ using Nop.Core.Domain.Media;
 using Nop.Core.Events;
 using Nop.Core.Infrastructure;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Data.Migrations;
 using Nop.Services.Affiliates;
 using Nop.Services.Authentication.External;
@@ -205,11 +206,11 @@ namespace Nop.Tests
             services.AddTransient<IUserAgentHelper, UserAgentHelper>();
 
             //data layer
-            services.AddTransient<IDataProviderManager, TestDataProviderManager>();
-            services.AddTransient<INopDataProvider, SqLiteNopDataProvider>();
+            services.AddTransient(typeof(IDataProviderManager<>), typeof(TestDataProviderManager<>));
+            services.AddTransient<INopDataProvider<MerchantDB>, SqLiteNopDataProvider<MerchantDB>>();
 
             //repositories
-            services.AddTransient(typeof(IRepository<>), typeof(EntityRepository<>));
+            services.AddTransient(typeof(IRepository<,>), typeof(EntityRepository<,>));
 
             //plugins
             services.AddTransient<IPluginService, PluginService>();
@@ -467,8 +468,8 @@ namespace Nop.Tests
 
             EngineContext.Replace(new NopTestEngine(_serviceProvider));
 
-            _serviceProvider.GetService<INopDataProvider>().CreateDatabase(null);
-            _serviceProvider.GetService<INopDataProvider>().InitializeDatabase();
+            _serviceProvider.GetService<INopDataProvider<MerchantDB>>().CreateDatabase(null);
+            _serviceProvider.GetService<INopDataProvider<MerchantDB>>().InitializeDatabase();
 
             var languagePackInfo = (DownloadUrl: string.Empty, Progress: 0);
 
@@ -511,9 +512,9 @@ namespace Nop.Tests
             }
         }
 
-        protected class NopTestConventionSet : NopConventionSet
+        protected class NopTestConventionSet : NopConventionSet<MerchantDB>
         {
-            public NopTestConventionSet(INopDataProvider dataProvider) : base(dataProvider)
+            public NopTestConventionSet(INopDataProvider<MerchantDB> dataProvider) : base(dataProvider)
             {
             }
         }
@@ -550,11 +551,11 @@ namespace Nop.Tests
 
         protected class TestPictureService : PictureService
         {
-            public TestPictureService(INopDataProvider dataProvider, IDownloadService downloadService,
+            public TestPictureService(INopDataProvider<MerchantDB> dataProvider, IDownloadService downloadService,
                 IHttpContextAccessor httpContextAccessor, INopFileProvider fileProvider,
-                IProductAttributeParser productAttributeParser, IRepository<Picture> pictureRepository,
-                IRepository<PictureBinary> pictureBinaryRepository,
-                IRepository<ProductPicture> productPictureRepository, ISettingService settingService,
+                IProductAttributeParser productAttributeParser, IRepository<Picture, MerchantDB> pictureRepository,
+                IRepository<PictureBinary, MerchantDB> pictureBinaryRepository,
+                IRepository<ProductPicture, MerchantDB> productPictureRepository, ISettingService settingService,
                 IUrlRecordService urlRecordService, IWebHelper webHelper, MediaSettings mediaSettings) : base(
                 dataProvider, downloadService, httpContextAccessor, fileProvider, productAttributeParser,
                 pictureRepository, pictureBinaryRepository, productPictureRepository, settingService, urlRecordService,

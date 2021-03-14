@@ -5,6 +5,7 @@ using Google.Authenticator;
 using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Plugin.MultiFactorAuth.GoogleAuthenticator.Domains;
 
 namespace Nop.Plugin.MultiFactorAuth.GoogleAuthenticator.Services
@@ -16,7 +17,7 @@ namespace Nop.Plugin.MultiFactorAuth.GoogleAuthenticator.Services
     {
         #region Fields
 
-        private readonly IRepository<GoogleAuthenticatorRecord> _repository;
+        private readonly IRepository<GoogleAuthenticatorRecord, MerchantDB> _repository;
         private readonly IStaticCacheManager _staticCacheManager;
         private readonly IWorkContext _workContext;
         private readonly GoogleAuthenticatorSettings _googleAuthenticatorSettings;
@@ -28,7 +29,7 @@ namespace Nop.Plugin.MultiFactorAuth.GoogleAuthenticator.Services
         #region Ctr
 
         public GoogleAuthenticatorService(
-            IRepository<GoogleAuthenticatorRecord> repository,
+            IRepository<GoogleAuthenticatorRecord, MerchantDB> repository,
             IStaticCacheManager staticCacheManager,
             IWorkContext workContext,
             GoogleAuthenticatorSettings googleAuthenticatorSettings)

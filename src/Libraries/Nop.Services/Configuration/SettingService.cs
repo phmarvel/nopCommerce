@@ -10,6 +10,7 @@ using Nop.Core.Caching;
 using Nop.Core.Configuration;
 using Nop.Core.Domain.Configuration;
 using Nop.Data;
+using Nop.Data.DataBase;
 
 namespace Nop.Services.Configuration
 {
@@ -20,14 +21,14 @@ namespace Nop.Services.Configuration
     {
         #region Fields
 
-        private readonly IRepository<Setting> _settingRepository;
+        private readonly IRepository<Setting, MerchantDB> _settingRepository;
         private readonly IStaticCacheManager _staticCacheManager;
 
         #endregion
 
         #region Ctor
 
-        public SettingService(IRepository<Setting> settingRepository,
+        public SettingService(IRepository<Setting, MerchantDB> settingRepository,
             IStaticCacheManager staticCacheManager)
         {
             _settingRepository = settingRepository;

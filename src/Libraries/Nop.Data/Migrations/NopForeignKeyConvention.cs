@@ -1,23 +1,24 @@
 ﻿using FluentMigrator.Expressions;
 using FluentMigrator.Model;
 using FluentMigrator.Runner.Conventions;
+using Nop.Data.DataBase;
 
 namespace Nop.Data.Migrations
 {
     /// <summary>
     /// Convention for the default naming of a foreign key
     /// </summary>
-    public class NopForeignKeyConvention : IForeignKeyConvention
+    public class NopForeignKeyConvention<DBType> : IForeignKeyConvention where DBType: IDBType
     {
         #region Fields
 
-        private readonly INopDataProvider _dataProvider;
+        private readonly INopDataProvider<DBType> _dataProvider;
 
         #endregion
 
         #region Ctor
 
-        public NopForeignKeyConvention(INopDataProvider dataProvider)
+        public NopForeignKeyConvention(INopDataProvider<DBType> dataProvider)
         {
             _dataProvider = dataProvider;
         }

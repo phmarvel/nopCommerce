@@ -17,6 +17,7 @@ using Nop.Core;
 using Nop.Core.ComponentModel;
 using Nop.Core.Infrastructure;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Data.Mapping;
 using Nop.Data.Migrations;
 
@@ -25,7 +26,7 @@ namespace Nop.Tests
     /// <summary>
     /// Represents the SQLite data provider
     /// </summary>
-    public partial class SqLiteNopDataProvider : INopDataProvider
+    public partial class SqLiteNopDataProvider<DBType> : INopDataProvider<DBType> where DBType: IDBType
     {
         #region Consts
 

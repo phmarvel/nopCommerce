@@ -7,6 +7,7 @@ using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Orders;
 using Nop.Core.Events;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Customers;
 
 namespace Nop.Services.Orders
@@ -20,18 +21,18 @@ namespace Nop.Services.Orders
 
         private readonly ICustomerService _customerService;
         private readonly IEventPublisher _eventPublisher;
-        private readonly IRepository<GiftCard> _giftCardRepository;
-        private readonly IRepository<GiftCardUsageHistory> _giftCardUsageHistoryRepository;
-        private readonly IRepository<OrderItem> _orderItemRepository;
+        private readonly IRepository<GiftCard, MerchantDB> _giftCardRepository;
+        private readonly IRepository<GiftCardUsageHistory, MerchantDB> _giftCardUsageHistoryRepository;
+        private readonly IRepository<OrderItem, MerchantDB> _orderItemRepository;
         #endregion
 
         #region Ctor
 
         public GiftCardService(ICustomerService customerService,
             IEventPublisher eventPublisher,
-            IRepository<GiftCard> giftCardRepository,
-            IRepository<GiftCardUsageHistory> giftCardUsageHistoryRepository,
-            IRepository<OrderItem> orderItemRepository)
+            IRepository<GiftCard, MerchantDB> giftCardRepository,
+            IRepository<GiftCardUsageHistory, MerchantDB> giftCardUsageHistoryRepository,
+            IRepository<OrderItem, MerchantDB> orderItemRepository)
         {
             _customerService = customerService;
             _eventPublisher = eventPublisher;

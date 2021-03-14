@@ -11,13 +11,14 @@ using LinqToDB.DataProvider;
 using LinqToDB.SqlQuery;
 using Nop.Core;
 using Nop.Core.Infrastructure;
+using Nop.Data.DataBase;
 using Nop.Data.DataProviders.LinqToDB;
 using Nop.Data.Migrations;
 using Npgsql;
 
 namespace Nop.Data.DataProviders
 {
-    public class PostgreSqlDataProvider : BaseDataProvider, INopDataProvider
+    public class PostgreSqlDataProvider<DBType> : BaseDataProvider<DBType>, INopDataProvider<DBType> where DBType : IDBType
     {
         #region Utils
 

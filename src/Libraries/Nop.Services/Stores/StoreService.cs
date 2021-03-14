@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Nop.Core.Domain.Stores;
 using Nop.Data;
+using Nop.Data.DataBase;
 
 namespace Nop.Services.Stores
 {
@@ -14,13 +15,13 @@ namespace Nop.Services.Stores
     {
         #region Fields
 
-        private readonly IRepository<Store> _storeRepository;
+        private readonly IRepository<Store, MerchantDB> _storeRepository;
 
         #endregion
 
         #region Ctor
 
-        public StoreService(IRepository<Store> storeRepository)
+        public StoreService(IRepository<Store, MerchantDB> storeRepository)
         {
             _storeRepository = storeRepository;
         }
@@ -143,7 +144,6 @@ namespace Nop.Services.Stores
 
             return contains;
         }
-
         /// <summary>
         /// Returns a list of names of not existing stores
         /// </summary>

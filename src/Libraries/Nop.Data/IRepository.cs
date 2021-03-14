@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using LinqToDB.Data;
 using Nop.Core;
 using Nop.Core.Caching;
+using Nop.Data.DataBase;
 
 namespace Nop.Data
 {
@@ -13,7 +14,9 @@ namespace Nop.Data
     /// Represents an entity repository
     /// </summary>
     /// <typeparam name="TEntity">Entity type</typeparam>
-    public partial interface IRepository<TEntity> where TEntity : BaseEntity
+    public partial interface IRepository<TEntity, DBType> 
+        where TEntity : BaseEntity  
+        where DBType : IDBType
     {
         #region Methods
 

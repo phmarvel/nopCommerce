@@ -23,6 +23,7 @@ using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Tax;
 using Nop.Core.Domain.Vendors;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services;
 using Nop.Services.Common;
 using Nop.Services.Configuration;
@@ -56,7 +57,7 @@ namespace Nop.Web.Areas.Admin.Factories
         private readonly IBaseAdminModelFactory _baseAdminModelFactory;
         private readonly ICurrencyService _currencyService;
         private readonly ICustomerAttributeModelFactory _customerAttributeModelFactory;
-        private readonly INopDataProvider _dataProvider;
+        private readonly INopDataProvider<MerchantDB> _dataProvider;
         private readonly IDateTimeHelper _dateTimeHelper;
         private readonly IGdprService _gdprService;
         private readonly ILocalizedModelFactory _localizedModelFactory;
@@ -84,7 +85,7 @@ namespace Nop.Web.Areas.Admin.Factories
             IBaseAdminModelFactory baseAdminModelFactory,
             ICurrencyService currencyService,
             ICustomerAttributeModelFactory customerAttributeModelFactory,
-            INopDataProvider dataProvider,
+            INopDataProvider<MerchantDB> dataProvider,
             IDateTimeHelper dateTimeHelper,
             IGdprService gdprService,
             ILocalizedModelFactory localizedModelFactory,

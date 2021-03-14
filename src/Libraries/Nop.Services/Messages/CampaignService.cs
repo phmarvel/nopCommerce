@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Nop.Core;
 using Nop.Core.Domain.Messages;
 using Nop.Data;
+using Nop.Data.DataBase;
 using Nop.Services.Customers;
 
 namespace Nop.Services.Messages
@@ -20,7 +21,7 @@ namespace Nop.Services.Messages
         private readonly IEmailSender _emailSender;
         private readonly IMessageTokenProvider _messageTokenProvider;
         private readonly IQueuedEmailService _queuedEmailService;
-        private readonly IRepository<Campaign> _campaignRepository;
+        private readonly IRepository<Campaign, MerchantDB> _campaignRepository;
         private readonly IStoreContext _storeContext;
         private readonly ITokenizer _tokenizer;
 
@@ -32,7 +33,7 @@ namespace Nop.Services.Messages
             IEmailSender emailSender,
             IMessageTokenProvider messageTokenProvider,
             IQueuedEmailService queuedEmailService,
-            IRepository<Campaign> campaignRepository,
+            IRepository<Campaign, MerchantDB> campaignRepository,
             IStoreContext storeContext,
             ITokenizer tokenizer)
         {

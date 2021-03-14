@@ -13,11 +13,12 @@ using LinqToDB.SqlQuery;
 using MySql.Data.MySqlClient;
 using Nop.Core;
 using Nop.Core.Infrastructure;
+using Nop.Data.DataBase;
 using Nop.Data.Migrations;
 
 namespace Nop.Data.DataProviders
 {
-    public class MySqlNopDataProvider : BaseDataProvider, INopDataProvider
+    public class MySqlNopDataProvider<DBType> : BaseDataProvider<DBType>, INopDataProvider<DBType> where DBType : IDBType
     {
         #region Fields
 
